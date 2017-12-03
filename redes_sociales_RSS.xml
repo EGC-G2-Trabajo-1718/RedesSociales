@@ -1,0 +1,61 @@
+
+<!-- 
+Autor: Daniel Jesús Martínez Suárez
+
+Fuentes:
+
+http://www.comolohago.cl/como-crear-un-feed-rss-desde-cero/
+
+https://desarrolloweb.com/articulos-copyleft/articulo-rss-crear-un-documento.html
+
+-->
+<?xml version="1.0" encoding="utf-8"?>  
+<rss version="2.0">
+<channel>
+	<title>Latest News Feed</title>
+	<description>Keep abreast of what is happening</description>  
+<item>
+	<title>
+		REVE 2017 and DSPL 2017 will be held on Tuesday
+	</title>
+</item>    
+<item>
+	<title>
+		The registration form is available
+	</title>
+	<link>
+	http://localhost/splc/registration-info/
+	</link>
+</item>
+<item>
+	<title>
+		The registration info can be checked here
+	</title>
+	<link>
+	http://localhost/splc/registration-info/
+	</link>
+	<description>
+		Registration form will be published soon!
+	</description>
+</item>
+<item>
+	<title>
+		More information here
+	</title>
+	<link>
+	http://localhost/splc/join-call-for-workshop-papers/
+	</link>
+</item>
+<item>
+	<title>
+		Link to the Journal
+	</title>
+	<link>
+	http://www.journals.elsevier.com/journal-of-systems-and-software/
+	</link>
+	<description>
+	We are pleased to announce that selected papers presented at the Conference will be published in the Journal of Systems and Software (JSS). There will be an open call.
+	</description>
+</item>
+</channel>  
+</rss>  
