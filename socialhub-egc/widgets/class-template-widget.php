@@ -7,7 +7,7 @@
  * @see WP_Widget
  */
 class <Classname>_Widget extends WP_Widget {
-	private const BASE_ID = '<class-name>-egc';
+	const BASE_ID = '<class-name>-egc';
 
 	/**
 	 * Register widget with WordPress
@@ -76,4 +76,5 @@ class <Classname>_Widget extends WP_Widget {
 	public function form($instance) {
 		// Output admin widget options form
 	}
+}
 ?>
