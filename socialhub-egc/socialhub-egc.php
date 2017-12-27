@@ -18,7 +18,7 @@
 /*
 * Plugin Name: SocialHub by EGC
 * Plugin URI: https://github.com/EGC-G2-Trabajo-1718/RedesSociales
-* Description: A plugin that has several features: share buttons, follow buttons, timeline widgets, comment box, etc. The available social networks are Twitter, Facebook, Instagram, LinkedIn, Google+ and Reddit.
+* Description: SocialHub is a plugin that has several features: share buttons, follow buttons, timeline widgets, comment box, etc. The available social networks are Twitter, Facebook, Instagram, LinkedIn, Google+ and Reddit.
 * Version: 1.0.0
 * Author: Daniel Martinez, Juan Huerta, Cristian Galan, Alberto Gomez, Luis M. Garcia and Carlos Ruano
 * Author URI: https://1984.lsi.us.es/wiki-egc/index.php/Gesti%C3%B3n_de_integraci%C3%B3n_con_redes_sociales_-_17_18_-_G2
@@ -44,5 +44,45 @@ function load_widgets_EGC() {
 	//register_widget('Comment_Box_Widget');
 	//register_widget('RSS_Widget');
 	//register_widget('Message_Button_Widget');
+}
+
+// Prints scripts before the closing body tag on the front end
+add_action('wp_footer', 'include_API_EGC');
+
+function include_API_EGC() {
+    // Twitter
+    $api = '<script>window.twttr = (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                    t = window.twttr || {};
+                if (d.getElementById(id)) return t;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+
+                t._e = [];
+                t.ready = function(f) {
+                    t._e.push(f);
+                };
+
+                return t;
+            }(document, "script", "twitter-wjs"));</script>';
+    // Facebook
+    $api .= '<div id="fb-root"></div>
+             <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11";
+                fjs.parentNode.insertBefore(js, fjs);
+             }(document, "script", "facebook-jssdk"));</script>';
+    // LinkedIn
+    $api .= '<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>';
+    // Google+
+    $api .= '<script src="https://apis.google.com/js/platform.js" async defer>
+                {lang: "en"}
+            </script>';
+
+    echo $api;
 }
 ?>
