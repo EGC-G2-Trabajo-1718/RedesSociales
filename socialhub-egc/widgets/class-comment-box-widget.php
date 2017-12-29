@@ -47,20 +47,11 @@ class Comment_Box_Widget extends WP_Widget {
 	 * @return void
 	 */
 	public function widget($args, $instance) {
-		/** 
-		* A continuación explico para qué vale cada párrafo:
-		* Uso el SDK de Facebook
-		* Caja de comentarios
-		* Para añadir cuentas de facebook de moderadores (se pueden añadir tantas como quieras, el primero es mi ID)
-		*/
+
 		echo 
 			'<div id="fb-root"></div>
-		
-			<div class="fb-comments" data-href="http://localhost:50000/" data-width="100%" data-numposts="5" data-order-by="reverse_time"></div>
-		
-			<meta property="fb:admins" content="{100000851242004}"/>
-			<meta property="fb:admins" content="{YOUR_FACEBOOK_USER_ID_2}"/>';
-		
+			<strong>BOX OF COMMENT</strong>
+			<div class="fb-comments" data-href="http://localhost:50000/" data-width="100%" data-numposts="5" data-order-by="reverse_time"></div>';
 	}
 
 	/**
