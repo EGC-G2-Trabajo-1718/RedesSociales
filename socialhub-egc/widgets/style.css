@@ -1,0 +1,23 @@
+.buttons{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+	margin-top:10px;
+	width: 280px;
+	
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 0px solid #000000;
+
+}
+
+.network{
+	margin-top:15px;
+	text-align: center;
+	
+}
+
+.network iframe{
+	margin-bottom:0px;
+}
