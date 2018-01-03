@@ -164,5 +164,53 @@ class Share_Button_Widget extends WP_Widget {
 
 		return $tweetParameters;
 	}
+
+	/**
+	 * Prints scripts or data in the head tag on the front end
+	 *
+	 * @return void
+	 */
+	public static function wp_head() {
+		// Adds a hook for a shortcode tag
+		add_shortcode('share-button-egc', array('Share_Button_Widget', 'shortcode'));
+	}
+
+	/**
+	 * Create a shortcode, that is, a tag that allows you to add 
+	 * functionality to the content of a page or article.
+	 *
+	 * @param array $atts User defined attributes in shortcode tag
+	 *
+	 * @return void
+	 */
+	public static function shortcode($atts) {
+		$a = shortcode_atts(array(
+				'tweetText' => 'Visit',
+				'hashtags' => '',
+			), $atts);
+		$currentUrl = static::getCurrentUrl();
+		$tweetText = $a['tweetText'];
+		$hashtags = $a['hashtags'];
+		$tweetParameters = static::getTweetParameters($tweetText, $hashtags);
+
+		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
+		$html .= '<div class="egc-flex-container">';
+		// Twitter
+		$html .= '<div><a class="twitter-share-button" href="https://twitter.com/intent/tweet'.$tweetParameters.'" data-size="large">Tweet</a></div>';
+		// Facebook
+		$html .= '<div class="fb-share-button" data-href="'.$currentUrl.'" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='.urlencode($currentUrl).'&amp;src=sdkpreparse">Share</a></div>';
+		// LinkedIn
+		$html .= '<div><script type="IN/Share"></script></div>';
+		// Google+
+		$html .= '<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>';
+		// Reddit
+		$html .= '<div><a href="//www.reddit.com/submit" onclick="window.location = '."'//www.reddit.com/submit?url='".' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit10.gif" alt="submit to reddit" border="0" /> </a></div>';
+		$html .= '</div>';
+
+		echo $html;
+	}
 }
+
+// Adds shortcode for share buttons
+add_action('wp_head', array('Share_Button_Widget', 'wp_head'));
 ?>
