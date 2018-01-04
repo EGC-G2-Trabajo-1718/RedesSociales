@@ -74,7 +74,6 @@ class Comment_Box_Widget extends WP_Widget {
 		
 		// Save widget options
 		$instance = $old_instance;
-		$instance['moderatorFacebookID'] = strip_tags($new_instance['moderatorFacebookID']);
 		$instance['size'] = strip_tags($new_instance['size']);
 		$instance['num'] = strip_tags($new_instance['num']);
 		$instance = $new_instance;
@@ -93,20 +92,12 @@ class Comment_Box_Widget extends WP_Widget {
 	public function form($instance) {
 		
 		//Getting configuration values
-		$moderatorFacebookID = esc_attr($instance['moderatorFacebookID']);
 		$size = esc_attr($instance['size']);
 		$num = esc_attr($instance['num']);
 		$style = esc_attr($instance['style']);
 		
 		?> 
 		
-		<strong>Moderators</strong>
-		<br/><span id="info">Please, input the Facebook profile <a href="https://developers.facebook.com/tools/explorer/?method=GET&path=me" target="blank">IDs</a> separates by coma to give moderator permissions:</span>
-		<p>
-			<label for="<?php echo $this->get_field_id('moderatorFacebookID'); ?>">
-				<input class="widefat" id="<?php echo $this->get_field_id('moderatorFacebookID'); ?>" placeholder="ModeratorID" name="<?php echo $this->get_field_name('moderatorFacebookID'); ?>" type="text" value="<?php echo $moderatorFacebookID; ?>" />
-			</label>
-		</p>
 		<strong>Size</strong>
 		<br/><span id="info">Enter the size of the widget (on pixel or %, default value = 100%):</span>
 		<p>
@@ -129,21 +120,6 @@ class Comment_Box_Widget extends WP_Widget {
 			</label>
 		</p>
 <?php
-	moderator($instance);
 	}
 }
-
-//AUXILIARY METHODS
-
-function moderator($instance) { // ERROR, tenog que conseguir pasarle la variable $instance
-	
-	//Getting moderatorID
-	$moderatorFacebookID = '108231509585760';
-	//echo 'HOLA1'.$moderatorFacebookID.'mal?';
-	if (!empty($moderatorFacebookID)) {
-		echo '<meta property="fb:admins" content="'.$moderatorFacebookID.'"/>';
-		//echo 'HOLA2';
-	}
-}
-add_action('wp_head', 'moderator');
 ?>
