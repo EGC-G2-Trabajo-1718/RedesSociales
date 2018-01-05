@@ -1,0 +1,17 @@
+div.egc-title {
+	background-color: #a81c41;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+}
+div.egc-flex-container {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+	background-color: #f9f9f9;
+	padding: 15px 15px 0;
+}
+div.egc-flex-container div {
+	margin-bottom: 15px;
+}
