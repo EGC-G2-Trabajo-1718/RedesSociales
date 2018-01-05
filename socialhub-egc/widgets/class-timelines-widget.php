@@ -60,6 +60,12 @@ class Timelines_Widget extends WP_Widget {
 		
 		<?php
 		
+		//FACEBOOK
+		
+		//INSTAGRAM
+		
+		
+		//GOOGLE+
 	}
 
 	/**
