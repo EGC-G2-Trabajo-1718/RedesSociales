@@ -1,13 +1,13 @@
 <?php
 /**
- * <Classname>_Widget
+ * Message_Button_Widget
  *
- * <Description>.
+ * A buttom to send a direct message, by Twitter, to a predefined profile.
  *
  * @see WP_Widget
  */
-class <Classname>_Widget extends WP_Widget {
-	const BASE_ID = '<class-name>-egc';
+class Message_Button_Widget extends WP_Widget {
+	const BASE_ID = 'message-button-widget';
 
 	/**
 	 * Register widget with WordPress
@@ -16,7 +16,7 @@ class <Classname>_Widget extends WP_Widget {
 	public function __construct() {
 		// Instantiate the parent object
 		parent::__construct(static::getBaseID(),
-							'<Class Name> by EGC',
+							'Message Button Widget by EGC',
 							array('description' => static::getDescription()));
 	}
 
@@ -35,7 +35,7 @@ class <Classname>_Widget extends WP_Widget {
 	 * @return string Description of the widget functionality
 	 */
 	public static function getDescription() {
-		return '<description>';
+		return 'A buttom to send a direct message, by Twitter, to a predefined profile.';
 	}
 
 	/**

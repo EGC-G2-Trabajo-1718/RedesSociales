@@ -32,7 +32,7 @@ defined('ABSPATH') or die ('Denied');
 //include_once(dirname(__FILE__).'/widgets/class-timeline-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-comment-box-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-RSS-widget.php');
-//include_once(dirname(__FILE__).'/widgets/class-message-button-widget.php');
+include_once(dirname(__FILE__).'/widgets/class-message-button-widget.php');
 
 // Fires after all default WordPress widgets have been registered
 add_action('widgets_init', 'load_widgets_EGC');
@@ -43,7 +43,7 @@ function load_widgets_EGC() {
 	//register_widget('Timeline_Widget');
 	//register_widget('Comment_Box_Widget');
 	//register_widget('RSS_Widget');
-	//register_widget('Message_Button_Widget');
+	register_widget('Message_Button_Widget');
 }
 
 // Prints scripts before the closing body tag on the front end
