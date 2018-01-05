@@ -88,7 +88,7 @@ class Message_Button_Widget extends WP_Widget {
 		$userTwitter = esc_attr($instance['userTwitter']);
 		$userTwitterID = esc_attr($instance['userTwitterID']);
 		?>
-		<br/><span id="info">Please, input the user who will receive de message</span>
+		<br/><span id="info">Please, input the user who will receive de message. Remember the account that you will be used, should have permissions to receive message from unknown people. </span>
 			<p>
 				<label for="<?php echo $this->get_field_id('userTwitter'); ?>">
 					<?php _e('Twitter account to send direct message:'); ?> 
