@@ -50,11 +50,15 @@ class RSS_Widget extends WP_Widget {
 		// Widget output
 		$currentUrlWithFeed = static::getCurrentUrlWithFeed();
 		
-		echo $currentUrlWithFeed;
+		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
+		$html .= '<div class="egc-flex-container">';
+		$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large"><i class="fa fa-rss" aria-hidden="true"></i> RSS</div></a>';
+		
+		echo $html;
 	}
 
 	public static function getCurrentUrlWithFeed() {
-		return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'feed';
+		return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."feed";
 	}
 }
 ?>
