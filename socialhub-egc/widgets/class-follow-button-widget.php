@@ -1,15 +1,4 @@
-<?php
-
-add_action('wp_print_styles', 'bts_style');
-
-function bts_style() {
-	$myStyleUrl  = plugin_dir_url (__FILE__).'style.css';
-	$myStyleFile = plugin_dir_path(__FILE__).'style.css';
-	if ( file_exists($myStyleFile) ) {
-	    wp_register_style('buttons_style', $myStyleUrl);
-	    wp_enqueue_style ('buttons_style');
-	}
-}
+<?php 
 
 /**
  * Follow_Button_Widget
