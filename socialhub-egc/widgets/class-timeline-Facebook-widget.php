@@ -1,13 +1,13 @@
 <?php
 /**
- * Timeline_Widget
+ * Timeline_Facebook_Widget
  *
  * This widget implements the timeline for a user social network.
  *
  * @see WP_Widget
  */
-class Timeline_Widget extends WP_Widget {
-	const BASE_ID = 'timeline-egc';
+class Timeline_Facebook_Widget extends WP_Widget {
+	const BASE_ID = 'timeline-Facebook-egc';
 
 	/**
 	 * Register widget with WordPress
@@ -16,7 +16,7 @@ class Timeline_Widget extends WP_Widget {
 	public function __construct() {
 		// Instantiate the parent object
 		parent::__construct(static::getBaseID(),
-							'Timeline by EGC',
+							'Timeline Facebook by EGC',
 							array('description' => static::getDescription()));
 	}
 
@@ -49,32 +49,18 @@ class Timeline_Widget extends WP_Widget {
 	public function widget($args, $instance) {
 		// Widget output
 		
-		
-		
-		//TWITTER
-		$user = getUsername($instance, 'twitter');	
-		if ($user!="")
-		
-		echo '<a class="twitter-timeline" data-lang="en" data-theme="dark" 
-		 data-width="350" data-height="350"
-		data-link-color="#19CF86"
-		href="https://twitter.com/'.$user.'?ref_src=twsrc%5Etfw">
-		Tweets by '.$user.'
-		<script async src="https://platform.twitter.com/widgets.js" 
-		charset="utf-8"></script>';
-		
-		
-		//FACEBOOK - EL USER AQUI ES LA PÁGINA QUE QUERAMOS VISUALIZAR
-		$user = getUsername($instance, 'facebook');	
+		//FACEBOOK
+		$user = getUsernameFacebook($instance, 'facebook');	
 		if ($user!="")
 			echo '<div class="fb-page" data-href="https://www.facebook.com/'.$user.'" 
-				data-tabs="timeline" data-small-header="true" data-adapt-container-width="true"
-				data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/'.$user.'"
-				class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$user.'"></a></blockquote></div>';
-		
-			
-
-				
+				data-tabs="timeline" data-small-header="true"
+				data-adapt-container-width="true"
+				data-hide-cover="false" 
+				data-show-facepile="false">
+				<blockquote cite="https://www.facebook.com/'.$user.'"
+				class="fb-xfbml-parse-ignore">
+				<a href="https://www.facebook.com/'.$user.'">
+				</a></blockquote></div>';
 	}
 
 	/**
@@ -86,9 +72,8 @@ class Timeline_Widget extends WP_Widget {
 	 * @return bool|array settings to save or false to cancel saving
 	 */
 	public function update($new_instance, $old_instance) {
-			// Save widget options
-		$instance = $old_instance;
-		$instance['userTwitter'] = strip_tags($new_instance['userTwitter']);
+		// Save widget options
+		$instance = $old_instance;	
 		$instance['userFacebook'] = strip_tags($new_instance['userFacebook']);
 		$instance = $new_instance;
 		//$instance[''] = strip_tags($new_instance['']); // Strips a string from HTML, XML, and PHP tags
@@ -107,19 +92,12 @@ class Timeline_Widget extends WP_Widget {
 		// Output admin widget options form
 		
 		//Getting usernames
-		$userTwitter = esc_attr($instance['userTwitter']);
 		
+		$userFacebook = esc_attr($instance['userFacebook']);
 		//$userGoogleplus = esc_attr($instance['userGoogleplus']);
-		
-		
+				
         ?>
 			<br/><span id="info">Please, input the account whose information will be shown in the timeline</span>
-			<p>
-				<label for="<?php echo $this->get_field_id('userTwitter'); ?>">
-					<?php _e('Twitter account:'); ?> 
-					<input class="widefat" id="<?php echo $this->get_field_id('userTwitter'); ?>" placeholder="TwitterUser" name="<?php echo $this->get_field_name('userTwitter'); ?>" type="text" value="<?php echo $userTwitter; ?>" />
-				</label>
-			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('userFacebook'); ?>">
 					<?php _e('Facebook page:'); ?> 
@@ -128,17 +106,15 @@ class Timeline_Widget extends WP_Widget {
 			</p>
 			
 			
-			
         <?php 
 	}
-}
-
-//AUXILIARY METHODS
+}	
+	//AUXILIARY METHODS
 
 /* params: 
 $instance: $instance
-$socialnetwork: facebook, twitter */
-function getUsername($instance, $socialnetwork){
+$socialnetwork: facebook */
+function getUsernameFacebook($instance, $socialnetwork){
 	
 			$network = ucfirst($socialnetwork);
 	
@@ -148,4 +124,7 @@ function getUsername($instance, $socialnetwork){
 			return $user;
 	
 }
+
+
+
 ?>

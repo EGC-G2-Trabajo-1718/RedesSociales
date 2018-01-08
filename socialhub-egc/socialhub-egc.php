@@ -24,12 +24,11 @@
 * Author URI: https://1984.lsi.us.es/wiki-egc/index.php/Gesti%C3%B3n_de_integraci%C3%B3n_con_redes_sociales_-_17_18_-_G2
 * License: GPL2
 */
-defined('ABSPATH') or die ('Denied');
-
 // Import widget classes
 //include_once(dirname(__FILE__).'/widgets/class-follow-button-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-share-button-widget.php');
-include_once(dirname(__FILE__).'/widgets/class-timeline-widget.php');
+include_once(dirname(__FILE__).'/widgets/class-timeline-Twitter-widget.php');
+include_once(dirname(__FILE__).'/widgets/class-timeline-Facebook-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-comment-box-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-RSS-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-message-button-widget.php');
@@ -40,7 +39,8 @@ add_action('widgets_init', 'load_widgets_EGC');
 function load_widgets_EGC() {
 	//register_widget('Follow_Button_Widget');
 	//register_widget('Share_Button_Widget');
-	register_widget('Timeline_Widget');
+	register_widget('Timeline_Twitter_Widget');
+	register_widget('Timeline_Facebook_Widget');
 	//register_widget('Comment_Box_Widget');
 	//register_widget('RSS_Widget');
 	//register_widget('Message_Button_Widget');
