@@ -21,36 +21,42 @@
 * License: GPL2
 */
 defined('ABSPATH') or die ('Denied');
-	
+
 // Import widget classes
-//include_once(dirname(__FILE__).'/widgets/class-follow-button-widget.php');
+include_once(dirname(__FILE__).'/widgets/class-follow-button-widget.php');
 include_once(dirname(__FILE__).'/widgets/class-share-button-widget.php');
 //include_once(dirname(__FILE__).'/widgets/class-timeline-widget.php');
 include_once(dirname(__FILE__).'/widgets/class-comment-box-widget.php');
 include_once(dirname(__FILE__).'/widgets/class-RSS-widget.php');
 include_once(dirname(__FILE__).'/widgets/class-message-button-widget.php');
+
 // Fires after all default WordPress widgets have been registered
 add_action('widgets_init', 'load_widgets_EGC');
+
 function load_widgets_EGC() {
-	//register_widget('Follow_Button_Widget');
+	register_widget('Follow_Button_Widget');
 	register_widget('Share_Button_Widget');
 	//register_widget('Timeline_Widget');
 	register_widget('Comment_Box_Widget');
 	register_widget('RSS_Widget');
 	register_widget('Message_Button_Widget');
 }
+
 // It is the proper hook to use when enqueuing items that are meant 
 // to appear on the front end. Despite the name, it is used for enqueuing both scripts and styles
 add_action('wp_enqueue_scripts', 'load_styles_EGC');
+
 function load_styles_EGC() {
     wp_register_style('styles-socialhub', plugins_url('socialhub-egc/css/styles-socialhub.css'));
     wp_enqueue_style('styles-socialhub');
 }
+
 // Prints scripts before the closing body tag on the front end
 add_action('wp_footer', 'include_API_EGC');
+
 function include_API_EGC() {
     // Twitter
-    $api = '<script>window.twttr = (function(d, s, id) {
+    $api .= '<script>window.twttr = (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0],
                     t = window.twttr || {};
                 if (d.getElementById(id)) return t;
@@ -77,6 +83,7 @@ function include_API_EGC() {
     $api .= '<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>';
     // Google+
     $api .= '<script src="https://apis.google.com/js/platform.js" async defer> {lang: "en-US"} </script>';
+
     echo $api;
 }
 ?>
