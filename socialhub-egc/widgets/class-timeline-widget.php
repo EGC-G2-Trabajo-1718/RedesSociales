@@ -50,31 +50,24 @@ class Timeline_Widget extends WP_Widget {
 		// Widget output
 		
 		
-		
 		//TWITTER
-		$user = getUsername($instance, 'twitter');	
+		$user = $instance['userTwitter'];	
 		if ($user!="")
 		
 		echo '<a class="twitter-timeline" data-lang="en" data-theme="dark" 
 		 data-width="350" data-height="350"
 		data-link-color="#19CF86"
-		href="https://twitter.com/'.$user.'?ref_src=twsrc%5Etfw">
-		Tweets by '.$user.'
-		<script async src="https://platform.twitter.com/widgets.js" 
-		charset="utf-8"></script>';
+		href="https://twitter.com/'.$user.'">
+		Tweets by '.$user.'</a>';
 		
 		
 		//FACEBOOK - EL USER AQUI ES LA PÁGINA QUE QUERAMOS VISUALIZAR
-		$user = getUsername($instance, 'facebook');	
+		$user = $instance['userFacebook'];	
 		if ($user!="")
 			echo '<div class="fb-page" data-href="https://www.facebook.com/'.$user.'" 
 				data-tabs="timeline" data-small-header="true" data-adapt-container-width="true"
 				data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/'.$user.'"
-				class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$user.'"></a></blockquote></div>';
-		
-			
-
-				
+				class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$user.'"></a></blockquote></div>';			
 	}
 
 	/**
@@ -91,7 +84,6 @@ class Timeline_Widget extends WP_Widget {
 		$instance['userTwitter'] = strip_tags($new_instance['userTwitter']);
 		$instance['userFacebook'] = strip_tags($new_instance['userFacebook']);
 		$instance = $new_instance;
-		//$instance[''] = strip_tags($new_instance['']); // Strips a string from HTML, XML, and PHP tags
 
 		return $instance;
 	}
@@ -107,10 +99,7 @@ class Timeline_Widget extends WP_Widget {
 		// Output admin widget options form
 		
 		//Getting usernames
-		$userTwitter = esc_attr($instance['userTwitter']);
-		
-		//$userGoogleplus = esc_attr($instance['userGoogleplus']);
-		
+		$userTwitter = esc_attr($instance['userTwitter']);		
 		
         ?>
 			<br/><span id="info">Please, input the account whose information will be shown in the timeline</span>
@@ -133,19 +122,4 @@ class Timeline_Widget extends WP_Widget {
 	}
 }
 
-//AUXILIARY METHODS
-
-/* params: 
-$instance: $instance
-$socialnetwork: facebook, twitter */
-function getUsername($instance, $socialnetwork){
-	
-			$network = ucfirst($socialnetwork);
-	
-			$user = apply_filters('widget_user'.$network, $instance['user'.$network]);
-	
-	
-			return $user;
-	
-}
 ?>
