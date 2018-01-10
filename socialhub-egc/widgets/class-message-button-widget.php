@@ -67,7 +67,7 @@ class Message_Button_Widget extends WP_Widget {
 						<a lang="en" class="twitter-dm-button"  href="
 						https://twitter.com/messages/compose?recipient_id='.$userTwitterID.'&text='.
 						$messageFormateado.'" data-screen-name="'.$userTwitter.'" 
-						data-show-screen-name="false data-size="large" data-show-count="false">
+						data-show-screen-name="false data-show-count="false">
 							Message '.userTwitter.'
 						</a>
 					</div>';
