@@ -50,11 +50,42 @@ class RSS_Widget extends WP_Widget {
 		// Widget output
 		$currentUrlWithFeed = static::getCurrentUrlWithFeed();
 		
-		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
-		$html .= '<div class="egc-flex-container">';
-		$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large"><i class="fa fa-rss" aria-hidden="true"></i> RSS</div></a>';
-		
+		$html .= '<div class="egc-rss-container">';
+		$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large"><i class="fa fa-rss-square" aria-hidden="true"></i> RSS</a></div>';
+		$html .= '</div>';
+
+		$html .= '<div class="egc-feedly-container">';
+		$html .= '<div><a href="https://feedly.com/i/subscription/feed/'.$currentUrlWithFeed.'">';
+		$html .= '<img id="feedlyFollow" src="http://s3.feedly.com/img/follows/feedly-follow-circle-flat-green_2x.png" alt="follow us in feedly" width="28" height="28"> Feedly</a></div>';
+		$html .= '</div>';
+
 		echo $html;
+	}
+
+	/**
+	 * Update a widget instance
+	 *
+	 * @param array $new_instance New settings for this instance as input by the user via form()
+	 * @param array $old_instance Old settings for this instance
+	 *
+	 * @return bool|array settings to save or false to cancel saving
+	 */
+	public function update($new_instance, $old_instance) {
+		// Save widget options
+		$instance = $old_instance;
+		//$instance[''] = strip_tags($new_instance['']); // Strips a string from HTML, XML, and PHP tags
+		return $instance;
+	}
+	
+	/**
+	 * Settings update form
+	 *
+	 * @param array $instance Current settings
+	 *
+	 * @return void
+	 */
+	public function form($instance) {
+		// Output admin widget options form
 	}
 
 	public static function getCurrentUrlWithFeed() {
