@@ -118,7 +118,7 @@ class Message_Button_Widget extends WP_Widget {
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id('message'); ?>">
-					<?php _e('Predefined massage that you send to the previous acoount'); ?> 
+					<?php _e('Predefined message that you send to the previous account'); ?> 
 					<input class="widefat" id="<?php echo $this->get_field_id('message'); ?>" 
 					placeholder="message like (942047040904859653)" name="<?php echo $this->
 					get_field_name('message'); ?>" type="text" value="<?php echo $message; ?>" 
