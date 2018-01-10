@@ -52,6 +52,7 @@ class Share_Button_Widget extends WP_Widget {
 		$tweetText = esc_attr($instance['tweetText']);
 		$hashtags = esc_attr($instance['hashtags']);
 		$tweetParameters = static::getTweetParameters($tweetText, $hashtags);
+		$telegramText = esc_attr($instance['telegramText']);
 
 		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
 		$html .= '<div class="egc-flex-container">';
@@ -65,6 +66,8 @@ class Share_Button_Widget extends WP_Widget {
 		$html .= '<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>';
 		// Reddit
 		$html .= '<div><a href="//www.reddit.com/submit" onclick="window.location = '."'//www.reddit.com/submit?url='".' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit10.gif" alt="submit to reddit" border="0" /> </a></div>';
+		// Telegram
+		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.$telegramText.'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
 		$html .= '</div>';
 
 		echo $html;
@@ -84,6 +87,7 @@ class Share_Button_Widget extends WP_Widget {
 		// Strips a string from HTML, XML, and PHP tags
 		$instance['tweetText'] = trim(strip_tags($new_instance['tweetText']));
 		$instance['hashtags'] = '';
+		$instance['telegramText'] = trim(strip_tags($new_instance['telegramText']));
 
 		$hashtags = trim(strip_tags($new_instance['hashtags']));
 		$arrayHashtags = explode(',', $hashtags);
@@ -114,6 +118,7 @@ class Share_Button_Widget extends WP_Widget {
 		// Output admin widget options form
 		$tweetText = $instance['tweetText'];
 		$hashtags = $instance['hashtags'];
+		$telegramText = $instance['telegramText'];
 
 		// Twitter settings
 		$html = '<p>Twitter settings:</p>';
@@ -124,6 +129,12 @@ class Share_Button_Widget extends WP_Widget {
 		$html .= '<p>';
 		$html .= '<label for="'.$this->get_field_id('hashtags').'">Type each hashtag separated by a comma:</label>';
 		$html .= '<input class="widefat" id="'.$this->get_field_id('hashtags').'" placeholder="hashtag1,hashtag2,hashtag3" name="'.$this->get_field_name('hashtags').'" type="text" value="'.$hashtags.'"/>';
+		$html .= '</p>';
+		// Telegram settings
+		$html .= '<p>Telegram settings:</p>';
+		$html .= '<p>';
+		$html .= '<label for="'.$this->get_field_id('telegramText').'">Type the Telegram text:</label>';
+		$html .= '<input class="widefat" id="'.$this->get_field_id('telegramText').'" name="'.$this->get_field_name('telegramText').'" type="text" value="'.$telegramText.'"/>';
 		$html .= '</p>';
 
 		echo $html;
@@ -205,6 +216,8 @@ class Share_Button_Widget extends WP_Widget {
 		$html .= '<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>';
 		// Reddit
 		$html .= '<div><a href="//www.reddit.com/submit" onclick="window.location = '."'//www.reddit.com/submit?url='".' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit10.gif" alt="submit to reddit" border="0" /> </a></div>';
+		// Telegram
+		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.$telegramText.'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
 		$html .= '</div>';
 
 		echo $html;
