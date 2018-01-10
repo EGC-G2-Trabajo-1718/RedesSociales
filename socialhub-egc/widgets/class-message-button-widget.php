@@ -58,10 +58,19 @@ class Message_Button_Widget extends WP_Widget {
 		$messageFormateado = static::getMessageFormateado($instance,$message);
 		
 		if ($userTwitter!="")
-			$html .= '<div><a lang="en" class="twitter-dm-button"  href="
-			https://twitter.com/messages/compose?recipient_id='.$userTwitterID.'&text='.messageFormateado.
-			'" data-screen-name="'.$userTwitter.'" data-show-screen-name="false" data-size="large" 
-			data-show-count="false"> Message '.userTwitter.'</a></div>';
+			$html .= '<aside id="text-message-button-widget" class="widget widget_text">
+						<h4 class="widget-title">
+							Contact us by Twitter here
+						</h4>
+					</aside>
+					<div>
+						<a lang="en" class="twitter-dm-button"  href="
+						https://twitter.com/messages/compose?recipient_id='.$userTwitterID.'&text='.
+						$messageFormateado.'" data-screen-name="'.$userTwitter.'" 
+						data-show-screen-name="false data-size="large" data-show-count="false">
+							Message '.userTwitter.'
+						</a>
+					</div>';
 		
 		echo $html;
 	}
@@ -95,6 +104,7 @@ class Message_Button_Widget extends WP_Widget {
 	public function form($instance) {
 		$userTwitter = esc_attr($instance['userTwitter']);
 		$userTwitterID = esc_attr($instance['userTwitterID']);
+		$message = esc_attr($instance['message']);
 		?>
 		<br/><span id="info">Please, input the user who will receive de message. Remember the account that
 		you will be used, should have permissions to receive message from unknown people. </span>
@@ -120,7 +130,7 @@ class Message_Button_Widget extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('message'); ?>">
 					<?php _e('Predefined message that you send to the previous account'); ?> 
 					<input class="widefat" id="<?php echo $this->get_field_id('message'); ?>" 
-					placeholder="message like (942047040904859653)" name="<?php echo $this->
+					placeholder="Message" name="<?php echo $this->
 					get_field_name('message'); ?>" type="text" value="<?php echo $message; ?>" 
 					/>
 				</label>
