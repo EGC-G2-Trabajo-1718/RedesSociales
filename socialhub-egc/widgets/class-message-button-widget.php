@@ -71,32 +71,46 @@ class Message_Button_Widget extends WP_Widget {
 		$messageFormateado = static::getMessageFormateado($instance,$message);
 		$usuarioHangoutFormateado = static::getUserHangoutFormateado($instance,$usuarioHangout);
 		
-		
-		$html .=   '<aside id="text-message-button-widget" class="widget widget_text">
+		if ($userTwitterFormateado!=""){
+			
+			$html .='<aside id="text-message-button-widget" class="widget widget_text">
 						<h4 class="widget-title">
 							Contact us by Twitter here
-						</h4>
+						</h4>	
 					</aside>
+					
 					<div>
+					
 						<a lang="en" class="twitter-dm-button"  href="
 						https://twitter.com/messages/compose?recipient_id='.$userTwitterID.'&text='.
-						$messageFormateado.'" data-screen-name="'.$userTwitter.'" 
-						data-show-screen-name="false data-show-count="false">
-							Message '.userTwitter.'
+						$messageFormateado.'" data-screen-name="'.$userTwitterFormateado.'" 
+						data-show-screen-name="false" data-size="large" data-show-count="false">
+							Message '.userTwitterFormateado.'
 						</a>
-					<div>
-					<aside id="text-message-button-widget" class="widget widget_text">
+						
+					<div>';
+		}
+		
+		if ($usuarioHangoutFormateado!=""){
+			
+			$html .='<aside id="text-message-button-widget" class="widget widget_text">
 						<h4 class="widget-title">
 							Contact us by Hangouts here
 						</h4>
 					</aside>
+					
 					<div>
-						<script src="https://apis.google.com/js/platform.js" async defer></script>
-							<g:hangout render="createhangout" invites="[ { id : "'.$usuarioHangout.'", 
-							invite_type : "EMAIL" }]">
-							</g:hangout>
+					
+						<script src="https://apis.google.com/js/platform.js" async defer>
+						</script>
+						<g:hangout render="createhangout" invites="[ { id : "'
+						.$usuarioHangoutFormateado.'", invite_type : "EMAIL" }]">
+						</g:hangout>
+							
 					</div>';
-					 	
+					
+		}	
+		
 		echo $html;
 		
 	}
@@ -218,8 +232,11 @@ class Message_Button_Widget extends WP_Widget {
 	*/
 	public static function getUserTwitterFormateado($instance, $userTwitter){
 	
-	
-		$userTwitterFormateado = "@" . $userTwitter;
+		if ($userTwitter!=""){
+			
+			$userTwitterFormateado = "@" . $userTwitter;
+		
+		}
 	
 		return $userTwitterFormateado;
 	
@@ -234,9 +251,12 @@ class Message_Button_Widget extends WP_Widget {
 	*/
 	public static function getUserHangoutFormateado($instance, $usuarioHangout){
 	
+		if ($usuarioHangout!=""){
+			
+			$usuarioHangoutFormateado = $usuarioHangout . "@gmail.com";
 	
-		$usuarioHangoutFormateado = $usuarioHangout . "@gmail.com";
-	
+		}
+		
 		return $usuarioHangoutFormateado;
 	
 	}
