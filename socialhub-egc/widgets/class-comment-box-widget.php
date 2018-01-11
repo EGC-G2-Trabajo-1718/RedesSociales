@@ -58,6 +58,12 @@ class Comment_Box_Widget extends WP_Widget {
 		$style = esc_attr($instance['style']);
 		$background = esc_attr($instance['background']);
 		
+		// The strip_tags() function strips a string from HTML, XML, and PHP tags
+		$size = strip_tags($size);
+		$num = strip_tags($num);
+		$style = strip_tags($style);
+		$background = strip_tags($background);
+		
 	?>
 		<!-- This <styele> is not found in the .css to be edited to the consumer's liking -->
 		<style>
@@ -230,6 +236,12 @@ class Comment_Box_Widget extends WP_Widget {
 		$num = $array['num'];
 		$style = $array['style'];
 		$background = $array['background'];
+		
+		// The strip_tags() function strips a string from HTML, XML, and PHP tags
+		$size = strip_tags($size);
+		$num = strip_tags($num);
+		$style = strip_tags($style);
+		$background = strip_tags($background);
 		
 		?>
 		<!-- This <styele> is not found in the .css to be edited to the consumer's liking -->
