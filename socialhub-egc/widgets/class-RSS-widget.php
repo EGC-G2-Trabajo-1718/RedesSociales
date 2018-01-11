@@ -15,8 +15,8 @@ class RSS_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		// Instantiate the parent object
-		parent::__construct(static::getBaseIandD(),
-							'RSS and Feedly buttons by EGC',
+		parent::__construct(static::getBaseID(),
+							'RSS, Feedly and Flipboard buttons by EGC',
 							array('description' => static::getDescription()));
 	}
 
@@ -35,7 +35,7 @@ class RSS_Widget extends WP_Widget {
 	 * @return string Description of the widget functionality
 	 */
 	public static function getDescription() {
-		return 'Allow the creation of buttons for RSS and Feedly.';
+		return 'Allow the creation of buttons for RSS, Feedly and Flipboard.';
 	}
 
 	/**
@@ -53,31 +53,31 @@ class RSS_Widget extends WP_Widget {
 		//Getting configuration values
 		$rss = esc_attr($instance['rss']);
 		$feedly = esc_attr($instance['feedly']);
+		$flipboard = esc_attr($instance['flipboard']);
 		$activation = "yes";
 
+		$html = '';
+
 		//Both activated
-		if (strcasecmp($rss, $activation) === 0 && strcasecmp($feedly, $activation) === 0) {
+		if (strcasecmp($rss, $activation) === 0) {
 			$html .= '<div class="egc-rss-container">';
-			$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large"><i class="fa fa-rss-square" aria-hidden="true"></i> RSS</a></div>';
+			$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large" target="_blank"><i class="fa fa-rss-square" aria-hidden="true"></i> RSS</a></div>';
 			$html .= '</div>';
+		}
 
+		if (strcasecmp($feedly, $activation) === 0){
 			$html .= '<div class="egc-feedly-container">';
-			$html .= '<div><a href="https://feedly.com/i/subscription/feed/'.$currentUrlWithFeed.'">';
+			$html .= '<div><a href="https://feedly.com/i/subscription/feed/'.$currentUrlWithFeed.'" target="_blank">';
 			$html .= '<img id="feedlyFollow" src="http://s3.feedly.com/img/follows/feedly-follow-circle-flat-green_2x.png" alt="follow us in feedly" width="28" height="28"> Feedly</a></div>';
 			$html .= '</div>';
 		}
 
-		elseif (strcasecmp($rss, $activation) === 0) {
-			$html .= '<div class="egc-rss-container">';
-			$html .= '<div><a class="RSS-button" href='.$currentUrlWithFeed.' data-size="large"><i class="fa fa-rss-square" aria-hidden="true"></i> RSS</a></div>';
+		if (strcasecmp($flipboard, $activation) === 0) {
+			$html .= '<div class="egc-flipboard-container">';
+			$html .= '<div><a href="https://flipboard.com/@EGC1718" target="_blank">';
+			$html .= '<img id="flipboardFollow" src="http://cdn.flipboard.com/badges/flipboard_mrrw.png" alt="follow us in Flipboard" width="28" height="28"> Flipboard</a></div>';
 			$html .= '</div>';
-		}
 
-		elseif (strcasecmp($feedly, $activation) === 0) {
-			$html  = '<div class="egc-feedly-container">';
-			$html .= '<div><a href="https://feedly.com/i/subscription/feed/'.$currentUrlWithFeed.'">';
-			$html .= '<img id="feedlyFollow" src="http://s3.feedly.com/img/follows/feedly-follow-circle-flat-green_2x.png" alt="follow us in feedly" width="28" height="28"> Feedly</a></div>';
-			$html .= '</div>';
 		}
 
 		echo $html;
@@ -96,6 +96,7 @@ class RSS_Widget extends WP_Widget {
 		$instance = $old_instance;
 		$instance['rss'] = strip_tags($new_instance['rss']);
 		$instance['feedly'] = strip_tags($new_instance['feedly']);
+		$instance['flipboard'] = strip_tags($new_instance['flipboard']);
 		$instance = $new_instance;
 		
 		return $instance;
@@ -113,6 +114,7 @@ class RSS_Widget extends WP_Widget {
 		//Getting configuration values
 		$rss = esc_attr($instance['rss']);
 		$feedly = esc_attr($instance['feedly']);
+		$flipboard = esc_attr($instance['flipboard']);
 		
 		?> 
 		
@@ -128,6 +130,13 @@ class RSS_Widget extends WP_Widget {
 			<p>
 				<label for="<?php echo $this->get_field_id('feedly'); ?>">
 					<input class="widefat" id="<?php echo $this->get_field_id('feedly'); ?>" name="<?php echo $this->get_field_name('feedly'); ?>" type="text" value="<?php echo $feedly; ?>" />
+				</label>
+			</p>
+			<strong>Flipboard button</strong>
+			<br/><span id="info">Enter "yes" for enable Flipboard button:</span>
+			<p>
+				<label for="<?php echo $this->get_field_id('flipboard'); ?>">
+					<input class="widefat" id="<?php echo $this->get_field_id('flipboard'); ?>" name="<?php echo $this->get_field_name('flipboard'); ?>" type="text" value="<?php echo $flipboard; ?>" />
 				</label>
 			</p>
 		<?php
