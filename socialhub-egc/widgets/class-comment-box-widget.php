@@ -71,8 +71,8 @@ class Comment_Box_Widget extends WP_Widget {
 			<strong>BOX OF COMMENT</strong>
 			<div id="comment-box-egc">
 			<div class="fb-comments" data-href="<?php the_permalink(); ?>" 
-				data-width="<?php if($size!="") echo $size; else echo "100%" ?>" 
-				data-numposts="<?php if($num!="") echo $num; else echo "5" ?>"
+				data-width="<?php if($size!="" && is_numeric($num)) echo $size; else echo "100%" ?>" 
+				data-numposts="<?php if($num!="" && is_numeric($num) && $num>0) echo $num; else echo "5" ?>"
 				data-colorscheme="<?php if($style=="light" or $style=="dark") echo $style; else echo "light" ?>"
 				data-order-by="reverse_time"></div>
 			</div>
