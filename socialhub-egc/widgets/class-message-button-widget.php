@@ -7,6 +7,7 @@
  * @see WP_Widget
  */
 class Message_Button_Widget extends WP_Widget {
+	
 	const BASE_ID = 'message-button-widget';
 
 	/**
@@ -14,10 +15,12 @@ class Message_Button_Widget extends WP_Widget {
 	 *
 	 */
 	public function __construct() {
+		
 		// Instantiate the parent object
 		parent::__construct(static::getBaseID(),
 							'Message Button Widget by EGC',
 							array('description' => static::getDescription()));
+							
 	}
 
 	/**
@@ -26,7 +29,9 @@ class Message_Button_Widget extends WP_Widget {
 	 * @return string Widget base ID
 	 */
 	public static function getBaseID() {
+		
 		return static::BASE_ID;
+		
 	}
 
 	/**
@@ -35,7 +40,10 @@ class Message_Button_Widget extends WP_Widget {
 	 * @return string Description of the widget functionality
 	 */
 	public static function getDescription() {
-		return 'A buttom to send a direct message, by Twitter, to a predefined profile.';
+		
+		return 'A buttom to send a direct message, by Twitter, to a predefined profile. And a buttom to 
+		call, by Hangouts, a predefined profile';
+		
 	}
 
 	/**
@@ -49,16 +57,22 @@ class Message_Button_Widget extends WP_Widget {
 	 */
 	public function widget($args, $instance) {
 	
-		
-		//TWITTER
+		//Cuenta de usuario de Twitter
 		$userTwitter = esc_attr($instance['userTwitter']);	
+		//ID de usuario de Twitter
 		$userTwitterID = esc_attr($instance['userTwitterID']);
+		//Mensaje que vamos a mandar de manera predefinida
 		$message = esc_attr($instance['message']);
+		//Cuenta de Google
+		$usuarioHangout = esc_attr($instance['usuarioHangout']);
 		
+		
+		$userTwitterFormateado = static::getUserTwitterFormateado($instance,$userTwitter);
 		$messageFormateado = static::getMessageFormateado($instance,$message);
+		$usuarioHangoutFormateado = static::getUserHangoutFormateado($instance,$usuarioHangout);
 		
-		if ($userTwitter!="")
-			$html .= '<aside id="text-message-button-widget" class="widget widget_text">
+		
+		$html .=   '<aside id="text-message-button-widget" class="widget widget_text">
 						<h4 class="widget-title">
 							Contact us by Twitter here
 						</h4>
@@ -70,9 +84,21 @@ class Message_Button_Widget extends WP_Widget {
 						data-show-screen-name="false data-show-count="false">
 							Message '.userTwitter.'
 						</a>
+					<div>
+					<aside id="text-message-button-widget" class="widget widget_text">
+						<h4 class="widget-title">
+							Contact us by Hangouts here
+						</h4>
+					</aside>
+					<div>
+						<script src="https://apis.google.com/js/platform.js" async defer></script>
+							<g:hangout render="createhangout" invites="[ { id : "'.$usuarioHangout.'", 
+							invite_type : "EMAIL" }]">
+							</g:hangout>
 					</div>';
-		
+					 	
 		echo $html;
+		
 	}
 
 	/**
@@ -84,14 +110,16 @@ class Message_Button_Widget extends WP_Widget {
 	 * @return bool|array settings to save or false to cancel saving
 	 */
 	public function update($new_instance, $old_instance) {
+		
 		// Save widget options
 		$instance = $old_instance;
 		$instance['userTwitter'] = strip_tags($new_instance['userTwitter']);
 		$instance['userTwitterID'] = strip_tags($new_instance['userTwitterID']);
 		$instance['message'] = strip_tags($new_instance['message']);
-		//$instance[''] = strip_tags($new_instance['']); // Strips a string from HTML, XML, and PHP tags
+		$instance['usuarioHangout'] = strip_tags($new_instance['usuarioHangout']);
 
 		return $instance;
+		
 	}
 
 	/**
@@ -102,21 +130,33 @@ class Message_Button_Widget extends WP_Widget {
 	 * @return void
 	 */
 	public function form($instance) {
+		
 		$userTwitter = esc_attr($instance['userTwitter']);
 		$userTwitterID = esc_attr($instance['userTwitterID']);
 		$message = esc_attr($instance['message']);
+		$usuarioHangout = esc_attr($instance['usuarioHangout']);
+		
 		?>
-		<br/><span id="info">Please, input the user who will receive de message. Remember the account that
-		you will be used, should have permissions to receive message from unknown people. </span>
+		
+		<br/>
+		<span id="info">Please, input the user who will receive de message. Remember the account that
+		you will be used, should have permissions to receive message from unknown people. 
+		</span>
+		
 			<p>
+			
 				<label for="<?php echo $this->get_field_id('userTwitter'); ?>">
 					<?php _e('Twitter account to send direct message:'); ?> 
 					<input class="widefat" id="<?php echo $this->get_field_id('userTwitter'); ?>" 
-					placeholder="@TwitterUser" name="<?php echo $this->get_field_name('userTwitter'); ?>" 
-					type="text" value="<?php echo $userTwitter; ?>" />
+					placeholder="TwitterUser" name="<?php echo $this->get_field_name('userTwitter'); ?>" 
+					type="text" value="<?php echo $userTwitter; ?>" 
+					/>
 				</label>
+				
 			</p>
+			
 			<p>
+			
 				<label for="<?php echo $this->get_field_id('userTwitterID'); ?>">
 					<?php _e('Twitter ID account to send direct message, to find the id, logged into the 
 					account you must navigate: Settings, Your data, and there is the id.'); ?> 
@@ -125,8 +165,10 @@ class Message_Button_Widget extends WP_Widget {
 					get_field_name('userTwitterID'); ?>" type="text" value="<?php echo $userTwitterID; ?>" 
 					/>
 				</label>
+				
 			</p>
 			<p>
+			
 				<label for="<?php echo $this->get_field_id('message'); ?>">
 					<?php _e('Predefined message that you send to the previous account'); ?> 
 					<input class="widefat" id="<?php echo $this->get_field_id('message'); ?>" 
@@ -134,19 +176,70 @@ class Message_Button_Widget extends WP_Widget {
 					get_field_name('message'); ?>" type="text" value="<?php echo $message; ?>" 
 					/>
 				</label>
+				
 			</p>
+			<p>
+			
+				<label for="<?php echo $this->get_field_id('usuarioHangout'); ?>">
+					<?php _e('Hangout account'); ?> 
+					<input class="widefat" id="<?php echo $this->get_field_id('usuarioHangout'); ?>" 
+					placeholder="Hangouts account" name="<?php echo $this->
+					get_field_name('usuarioHangout');?>" type="text" value="<?php echo $usuarioHangout; ?>" 
+					/>
+				</label>
+				
+			</p>
+			
 		<?php
 
 	}
 	
+	/*
+	Metodo utlizado para proporcionar un formato correcto al mensaje predefinido a mandar por mensajeria 
+	directa de Twitter
+	Parametros de entrada: 
+	$instance: $instance
+	$message: una cadena de caracteres cualquiera 
+	*/
 	public static function getMessageFormateado($instance, $message){
-	
-		$network = ucfirst($socialnetwork);
 	
 		$messageFormateado = str_replace(" ","%20",$message);
 	
 		return $messageFormateado;
 	
 	}
+	
+	/*
+	Metodo utlizado para proporcionar un formato correcto a la cuenta de Twitter que se va a utilizar para 
+	contactar mediante Twitter
+	Parametros de entrada: 
+	$instance: $instance
+	$userTwitter: una cadena de caracteres cualquiera 
+	*/
+	public static function getUserTwitterFormateado($instance, $userTwitter){
+	
+	
+		$userTwitterFormateado = "@" . $userTwitter;
+	
+		return $userTwitterFormateado;
+	
+	}
+	
+	/*
+	Metodo utlizado para proporcionar un formato correcto a la cuenta de google que se va a utilizar para 
+	contactar mediante hangouts
+	Parametros de entrada: 
+	$instance: $instance
+	$userTwitter: una cadena de caracteres cualquiera 
+	*/
+	public static function getUserHangoutFormateado($instance, $usuarioHangout){
+	
+	
+		$usuarioHangoutFormateado = $usuarioHangout . "@gmail.com";
+	
+		return $usuarioHangoutFormateado;
+	
+	}
+	
 }
 ?>
