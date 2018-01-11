@@ -15,16 +15,30 @@ div.egc-flex-container {
 div.egc-flex-container div {
 	margin-bottom: 15px;
 }
-a.telegram-share-button {
+a.telegram-share-button,
+a.whatsapp-share-button {
 	display: inline-block;
 	border-radius: 4px;
 	padding: 3px 10px;
 	color: #fff !important;
 	text-decoration: none;
+}
+a.telegram-share-button {
 	background-color: #0088cc;
+}
+a.whatsapp-share-button {
+	background-color: #128c7e;
 }
 a.telegram-share-button:hover {
 	background-color: #0c7abf;
+}
+a.whatsapp-share-button:hover {
+	background-color: #075e54;
+}
+@media only screen and (min-width: 768px) {
+	div.container-whatsapp {
+		display: none;
+	}
 }
 .buttons{
 	padding-top: 10px;

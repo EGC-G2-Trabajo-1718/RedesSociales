@@ -67,7 +67,9 @@ class Share_Button_Widget extends WP_Widget {
 		// Reddit
 		$html .= '<div><a href="//www.reddit.com/submit" onclick="window.location = '."'//www.reddit.com/submit?url='".' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit10.gif" alt="submit to reddit" border="0" /> </a></div>';
 		// Telegram
-		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.$telegramText.'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
+		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.urlencode($telegramText).'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
+		// Whatsapp
+		$html .= '<div class="container-whatsapp"><a class="whatsapp-share-button" href="whatsapp://send?text='.urlencode($currentUrl).'" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp; WhatsApp</a></div>';
 		$html .= '</div>';
 
 		echo $html;
@@ -196,13 +198,15 @@ class Share_Button_Widget extends WP_Widget {
 	 */
 	public static function shortcode($atts) {
 		$a = shortcode_atts(array(
-				'tweetText' => 'Visit',
+				'tweettext' => '',
 				'hashtags' => '',
+				'telegramtext' => '',
 			), $atts);
 		$currentUrl = static::getCurrentUrl();
-		$tweetText = $a['tweetText'];
+		$tweetText = $a['tweettext'];
 		$hashtags = $a['hashtags'];
 		$tweetParameters = static::getTweetParameters($tweetText, $hashtags);
+		$telegramText = $a['telegramtext'];
 
 		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
 		$html .= '<div class="egc-flex-container">';
@@ -217,7 +221,9 @@ class Share_Button_Widget extends WP_Widget {
 		// Reddit
 		$html .= '<div><a href="//www.reddit.com/submit" onclick="window.location = '."'//www.reddit.com/submit?url='".' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit10.gif" alt="submit to reddit" border="0" /> </a></div>';
 		// Telegram
-		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.$telegramText.'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
+		$html .= '<div><a class="telegram-share-button" href="https://t.me/share/url?url='.urlencode($currentUrl).'&text='.urlencode($telegramText).'"><i class="fa fa-telegram" aria-hidden="true"></i>&nbsp; Telegram</a></div>';
+		// Whatsapp
+		$html .= '<div class="container-whatsapp"><a class="whatsapp-share-button" href="whatsapp://send?text='.urlencode($currentUrl).'" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp; WhatsApp</a></div>';
 		$html .= '</div>';
 
 		echo $html;
