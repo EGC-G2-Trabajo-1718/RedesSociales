@@ -11,6 +11,7 @@ class Comment_Box_Widget extends WP_Widget {
 	public $size;
 	public $num;
 	public $style;
+	public $background;
 	
 	/**
 	 * Register widget with WordPress
@@ -55,15 +56,27 @@ class Comment_Box_Widget extends WP_Widget {
 		$size = esc_attr($instance['size']);
 		$num = esc_attr($instance['num']);
 		$style = esc_attr($instance['style']);
+		$background = esc_attr($instance['background']);
 		
 	?>
-		<strong>BOX OF COMMENT</strong>
-		<div id="comment-box-egc">
-		<div class="fb-comments" data-href="<?php the_permalink(); ?>" 
-			data-width="<?php if($size!="") echo $size; else echo "100%" ?>" 
-			data-numposts="<?php if($num!="") echo $num; else echo "5" ?>"
-			data-colorscheme="<?php if($style=="light" or $style=="dark") echo $style; else echo "light" ?>"
-			data-order-by="reverse_time"></div>
+		<!-- This <styele> is not found in the .css to be edited to the consumer's liking -->
+		<style>
+			div.comment-box-background {
+				background-color: <?php if($background!="") echo $background;?>;
+			}
+		</style>
+		
+		<div class="comment-box-background">
+		
+			<strong>BOX OF COMMENT</strong>
+			<div id="comment-box-egc">
+			<div class="fb-comments" data-href="<?php the_permalink(); ?>" 
+				data-width="<?php if($size!="") echo $size; else echo "100%" ?>" 
+				data-numposts="<?php if($num!="") echo $num; else echo "5" ?>"
+				data-colorscheme="<?php if($style=="light" or $style=="dark") echo $style; else echo "light" ?>"
+				data-order-by="reverse_time"></div>
+			</div>
+			
 		</div>
 		
 		<!-- Show total comments -->
@@ -90,6 +103,8 @@ class Comment_Box_Widget extends WP_Widget {
 		$instance = $old_instance;
 		$instance['size'] = strip_tags($new_instance['size']);
 		$instance['num'] = strip_tags($new_instance['num']);
+		$instance['style'] = strip_tags($new_instance['style']);
+		$instance['background'] = strip_tags($new_instance['background']);
 		$instance = $new_instance;
 		
 
@@ -109,6 +124,7 @@ class Comment_Box_Widget extends WP_Widget {
 		$size = esc_attr($instance['size']);
 		$num = esc_attr($instance['num']);
 		$style = esc_attr($instance['style']);
+		$background = esc_attr($instance['background']);
 		
 		?> 
 		
@@ -131,6 +147,13 @@ class Comment_Box_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_id('style'); ?>">
 				<input class="widefat" id="<?php echo $this->get_field_id('style'); ?>" name="<?php echo $this->get_field_name('style'); ?>" type="text" value="<?php echo $style; ?>" />
+			</label>
+		</p>
+		<strong>Background color</strong>
+		<br/><span id="info">Enter the background color of the widget in hexadecimal format (default background of the web):</span>
+		<p>
+			<label for="<?php echo $this->get_field_id('background'); ?>">
+				<input class="widefat" id="<?php echo $this->get_field_id('background'); ?>" name="<?php echo $this->get_field_name('background'); ?>" type="text" value="<?php echo $background; ?>" />
 			</label>
 		</p>
 <?php
