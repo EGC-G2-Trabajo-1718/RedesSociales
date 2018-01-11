@@ -52,13 +52,24 @@ class Comment_Box_Widget extends WP_Widget {
 		$size = esc_attr($instance['size']);
 		$num = esc_attr($instance['num']);
 		$style = esc_attr($instance['style']);
+		
 	?>
 		<strong>BOX OF COMMENT</strong>
+		<div id="comment-box-egc">
 		<div class="fb-comments" data-href="<?php the_permalink(); ?>" 
 			data-width="<?php if($size!="") echo $size; else echo "100%" ?>" 
 			data-numposts="<?php if($num!="") echo $num; else echo "5" ?>"
 			data-colorscheme="<?php if($style=="light" or $style=="dark") echo $style; else echo "light" ?>"
 			data-order-by="reverse_time"></div>
+		</div>
+		
+		<!-- Show total comments -->
+		<span class="fb-comments-count" data-href="<?php the_permalink(); ?>"></span>
+		total comments<br>
+		
+			
+		<!-- Button to hide or show all comments -->
+		<button id="hide-show">Hide/show comments</button>
 	<?php
 	}
 
@@ -121,5 +132,24 @@ class Comment_Box_Widget extends WP_Widget {
 		</p>
 <?php
 	}
+	
+	/**
+	 * Add this script to hide and show comments
+	 *
+	 * @return void
+	 */
+	public static function toFooter() {
+	
+		echo '<script>
+			$(document).ready(function(){
+				$("#hide-show").click(function(){
+					$("#comment-box-egc").toggle();
+				});
+			});
+		</script>';
+	}
 }
+
+// Add this method to head
+add_action('wp_footer', array('Comment_Box_Widget', 'toFooter'));
 ?>
