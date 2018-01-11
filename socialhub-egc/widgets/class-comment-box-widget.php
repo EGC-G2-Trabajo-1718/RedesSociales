@@ -8,6 +8,9 @@
  */
 class Comment_Box_Widget extends WP_Widget {
 	const BASE_ID = 'comment-box-egc';
+	public $size;
+	public $num;
+	public $style;
 	
 	/**
 	 * Register widget with WordPress
@@ -148,6 +151,24 @@ class Comment_Box_Widget extends WP_Widget {
 			});
 		</script>';
 	}
+	
+	/**
+	* Getters of class attributes
+	*
+	* @return the corresponding attribute
+	*/
+	public function getSize() {
+        return $this->size;
+    }
+	
+	public function getNum() {
+        return $this->num;
+    }
+	
+	public function getStyle() {
+        return $this->style;
+    }
+	
 }
 
 // Add this method to head
