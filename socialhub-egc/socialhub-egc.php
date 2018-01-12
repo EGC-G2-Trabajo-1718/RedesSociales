@@ -14,8 +14,8 @@
 /*
 * Plugin Name: SocialHub by EGC
 * Plugin URI: https://github.com/EGC-G2-Trabajo-1718/RedesSociales
-* Description: SocialHub is a plugin that has several features: share buttons, follow buttons, timeline widgets, comment box, etc. The available social networks are Twitter, Facebook, Instagram, LinkedIn, Google+ and Reddit.
-* Version: 1.0.0
+* Description: SocialHub by EGC is a plugin for WordPress that integrates many social network widgets: share buttons, follow buttons, embedded timelines, comment box, etc. Some of the available social networks are Twitter, Facebook, Instagram, LinkedIn, Google+ and Reddit. The accounts and other options are fully configurable from the WordPress back-end.
+* Version: 1.1.0
 * Author: Daniel Martinez, Juan Huerta, Cristian Galan, Alberto Gomez, Luis M. Garcia and Carlos Ruano
 * Author URI: https://1984.lsi.us.es/wiki-egc/index.php/Gesti%C3%B3n_de_integraci%C3%B3n_con_redes_sociales_-_17_18_-_G2
 * License: GPL2
