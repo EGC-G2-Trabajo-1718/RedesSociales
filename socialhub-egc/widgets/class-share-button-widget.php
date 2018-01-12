@@ -51,7 +51,8 @@ class Share_Button_Widget extends WP_Widget {
 		$currentUrl = static::getCurrentUrl();
 		$tweetText = esc_attr($instance['tweetText']);
 		$hashtags = esc_attr($instance['hashtags']);
-		$tweetParameters = static::getTweetParameters($tweetText, $hashtags);
+		$sourceTweet = esc_attr($instance['sourceTweet']);
+		$tweetParameters = static::getTweetParameters($tweetText, $hashtags, $sourceTweet);
 		$telegramText = esc_attr($instance['telegramText']);
 
 		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
@@ -89,6 +90,7 @@ class Share_Button_Widget extends WP_Widget {
 		// Strips a string from HTML, XML, and PHP tags
 		$instance['tweetText'] = trim(strip_tags($new_instance['tweetText']));
 		$instance['hashtags'] = '';
+		$instance['sourceTweet'] = static::formatTwitterUsername($new_instance['sourceTweet']);
 		$instance['telegramText'] = trim(strip_tags($new_instance['telegramText']));
 
 		$hashtags = trim(strip_tags($new_instance['hashtags']));
@@ -120,6 +122,7 @@ class Share_Button_Widget extends WP_Widget {
 		// Output admin widget options form
 		$tweetText = $instance['tweetText'];
 		$hashtags = $instance['hashtags'];
+		$sourceTweet = $instance['sourceTweet'];
 		$telegramText = $instance['telegramText'];
 
 		// Twitter settings
@@ -131,6 +134,10 @@ class Share_Button_Widget extends WP_Widget {
 		$html .= '<p>';
 		$html .= '<label for="'.$this->get_field_id('hashtags').'">Type each hashtag separated by a comma:</label>';
 		$html .= '<input class="widefat" id="'.$this->get_field_id('hashtags').'" placeholder="hashtag1,hashtag2,hashtag3" name="'.$this->get_field_name('hashtags').'" type="text" value="'.$hashtags.'"/>';
+		$html .= '</p>';
+		$html .= '<p>';
+		$html .= '<label for="'.$this->get_field_id('sourceTweet').'">Type the Twitter username to associate with the tweet:</label>';
+		$html .= '<input class="widefat" id="'.$this->get_field_id('sourceTweet').'" name="'.$this->get_field_name('sourceTweet').'" type="text" value="'.$sourceTweet.'"/>';
 		$html .= '</p>';
 		// Telegram settings
 		$html .= '<p>Telegram settings:</p>';
@@ -152,14 +159,34 @@ class Share_Button_Widget extends WP_Widget {
 	}
 
 	/**
+	 * Get the Twitter username without invalid characters
+	 *
+	 * @param string $username The Twitter username
+	 *
+	 * @return string Username without invalid characters
+	 */
+	public static function formatTwitterUsername($username) {
+		// Twitter username can only contain letters, numbers and underscores
+		$formatUsername = preg_replace('([^_0-9A-Za-z])', '', $username);
+		
+		// In addition, it is limited to 15 characters
+		if(strlen($formatUsername) > 15) {
+			$formatUsername = substr($formatUsername, 0, 15);
+		}
+
+		return $formatUsername;
+	}
+
+	/**
 	 * Get the URL parameters for tweet button
 	 *
 	 * @param string $tweetText The text of tweet
 	 * @param string $hashtags The hashtags of tweet
+	 * @param string $sourceTweet The username to associate with the tweet
 	 *
 	 * @return string URL parameters like a string
 	 */
-	public static function getTweetParameters($tweetText, $hashtags) {
+	public static function getTweetParameters($tweetText, $hashtags, $sourceTweet) {
 		$tweetParameters = '';
 
 		if(!empty($tweetText)) {
@@ -172,6 +199,14 @@ class Share_Button_Widget extends WP_Widget {
 				$tweetParameters = '?hashtags='.urlencode($hashtags);
 			} else {
 				$tweetParameters .= '&hashtags='.urlencode($hashtags);
+			}
+		}
+
+		if(!empty($sourceTweet)) {
+			if(empty($tweetParameters)) {
+				$tweetParameters = '?via='.urlencode($sourceTweet);
+			} else {
+				$tweetParameters .= '&via='.urlencode($sourceTweet);
 			}
 		}
 
@@ -200,13 +235,15 @@ class Share_Button_Widget extends WP_Widget {
 		$a = shortcode_atts(array(
 				'tweettext' => '',
 				'hashtags' => '',
+				'sourcetweet' => '',
 				'telegramtext' => '',
 			), $atts);
 		$currentUrl = static::getCurrentUrl();
-		$tweetText = $a['tweettext'];
-		$hashtags = $a['hashtags'];
-		$tweetParameters = static::getTweetParameters($tweetText, $hashtags);
-		$telegramText = $a['telegramtext'];
+		$tweetText = trim(strip_tags($a['tweettext']));
+		$hashtags = trim(strip_tags($a['hashtags']));
+		$sourceTweet = static::formatTwitterUsername($a['sourcetweet']);
+		$tweetParameters = static::getTweetParameters($tweetText, $hashtags, $sourceTweet);
+		$telegramText = trim(strip_tags($a['telegramtext']));
 
 		$html = '<div class="egc-title"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</div>';
 		$html .= '<div class="egc-flex-container">';
