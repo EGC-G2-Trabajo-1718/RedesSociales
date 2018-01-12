@@ -54,25 +54,40 @@ class Timeline_Widget extends WP_Widget {
 		// Widget output
 		
 		
+		
+		
 		//TWITTER
 		$user = $instance['userTwitter'];	
+		$theme = $instance['theme'];	
+		$widthTwitter = $instance['widthTwitter'];	
+		$heightTwitter = $instance['heightTwitter'];	
 			if ($user!="")		
 				echo '<a class="twitter-timeline"
-						data-lang="en" data-theme="dark" 
-						data-width="350" data-height="350"
+						data-lang="en" 
+						data-width="'.$widthTwitter.'" 
+						data-height="'.$heightTwitter.'"
+						data-theme="'.$theme.'" 	
 						data-link-color="#19CF86"
 						href="https://twitter.com/'.$user.'">
 						Tweets by '.$user.'</a>
 						</br>
 						</br>';
+						
+		 			
+						
+						
 		
 		
 		//FACEBOOK - EL USER AQUI ES LA PÁGINA QUE QUERAMOS VISUALIZAR
 		$user = $instance['userFacebook'];	
+		$anchoFacebook = $instance['anchoFacebook'];
+		$alturaFacebook = $instance['alturaFacebook'];
 			if ($user!="")
 				echo '<div class="fb-page" data-href="https://www.facebook.com/'.$user.'" 
 						data-tabs="timeline" data-small-header="true" 
 						data-adapt-container-width="true"
+						data-width="'.$anchoFacebook.'"
+						data-height="'.$alturaFacebook.'"
 						data-hide-cover="false" 
 						data-show-facepile="false">
 						<blockquote cite="https://www.facebook.com/'.$user.'"
@@ -83,8 +98,8 @@ class Timeline_Widget extends WP_Widget {
 					</br>
 					</br>';
 		
-
-		//TWITTER HASTAG Y ID DEL WIDGET CREADO POR EL USUARIO
+		
+		//TWITTER HASTAG E ID DEL WIDGET CREADO POR EL USUARIO
 		$hashtag = $instance['hashtag'];	
 		$widgetId = $instance['widgetId'];
 			if ($hashtag!="" && $widgetId!="")		
@@ -93,8 +108,8 @@ class Timeline_Widget extends WP_Widget {
 						data-widget-id="'.$widgetId.'">
 						Tweets sobre '.$hashtag.'
 					</a>
-									
-					 
+					
+					
 					<script>
 						!function(d,s,id){
 							var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";
@@ -108,8 +123,8 @@ class Timeline_Widget extends WP_Widget {
 					</script>
 					</br>
 					</br>';	
-          
-		                      
+		            
+                                
 				
 	}
 
@@ -128,6 +143,11 @@ class Timeline_Widget extends WP_Widget {
 		$instance['userFacebook'] = strip_tags($new_instance['userFacebook']);
 		$instance['hashtag'] = strip_tags($new_instance['hashtag']);
 		$instance['widgetId'] = strip_tags($new_instance['widgetId']);
+		$instance['alturaFacebook'] = strip_tags($new_instance['alturaFacebook']);
+		$instance['anchoFacebook'] = strip_tags($new_instance['anchoFacebook']);
+		$instance['heightTwitter'] = strip_tags($new_instance['heightTwitter']);
+		$instance['theme'] = strip_tags($new_instance['theme']);
+		$instance['widthTwitter'] = strip_tags($new_instance['widthTwitter']);
 		$instance = $new_instance;
 
 		return $instance;
@@ -148,11 +168,18 @@ class Timeline_Widget extends WP_Widget {
 		$userFacebook = esc_attr($instance['userFacebook']);		
 		$hashtag = esc_attr($instance['hashtag']);		
 		$widgetId = esc_attr($instance['widgetId']);		
+		$alturaFacebook = esc_attr($instance['alturaFacebook']);		
+		$anchoFacebook = esc_attr($instance['anchoFacebook']);		
+		$theme = esc_attr($instance['theme']);		
+		$widthTwitter = esc_attr($instance['widthTwitter']);		
+		$heightTwitter = esc_attr($instance['heightTwitter']);		
 		
         ?>
 			<br/><span id="info">Please, input the account whose 
 			information will be shown in the timeline</span>
 			<p>
+			<!--ATRIBUTO PARA LA CUENTA DE TWITTER -->
+			<h3>Twitter Timeline</h3>
 				<label for="<?php echo $this->get_field_id('userTwitter'); 
 				?>">
 					<?php _e('Twitter account:'); ?> 
@@ -160,27 +187,72 @@ class Timeline_Widget extends WP_Widget {
 					get_field_id('userTwitter'); ?>" placeholder="TwitterUser" name="<?php echo $this->get_field_name('userTwitter'); ?>" type="text"
 					value="<?php echo $userTwitter; ?>" />
 				</label>
+				<!--ESTILO PARA EL WIDGET DE FACEBOOK -->
+				<strong>Twitter timeline Style</strong>
+				</br>
+				<label for="<?php echo $this->get_field_id('widthTwitter'); ?>">
+					<?php _e('Width:'); ?> 
+					<input class="widefat" id="<?php echo $this->
+					get_field_id('widthTwitter'); ?>" placeholder="Width" name="<?php echo $this->get_field_name('widthTwitter'); ?>" type="text"
+					value="<?php echo $widthTwitter; ?>" />
+				</label>
+				
+				<label for="<?php echo $this->get_field_id('heightTwitter'); ?>">
+					<?php _e('Height:'); ?> 
+					<input class="widefat" id="<?php echo $this->
+					get_field_id('heightTwitter'); ?>" placeholder="Height" name="<?php echo $this->get_field_name('heightTwitter'); ?>" type="text"
+					value="<?php echo $heightTwitter; ?>" />
+				</label>
+				
+				<label for="<?php echo $this->get_field_id('theme'); ?>">
+					<?php _e('Theme(dark/light):'); ?> 
+					<input class="widefat" id="<?php echo $this->
+					get_field_id('theme'); ?>" placeholder="dark/light" name="<?php echo $this->get_field_name('theme'); ?>" type="text"
+					value="<?php echo $theme; ?>" />
+				</label>
 			</p>
 			
 			<p>
+			<!--ATRIBUTO PARA LA PAGINA DE FACEBOOK -->
+			<h3>Facebook Timeline</h3>
 				<label for="<?php echo $this->get_field_id('userFacebook'); ?>">
 					<?php _e('Facebook page:'); ?> 
 					<input class="widefat" id="<?php echo $this->
 					get_field_id('userFacebook'); ?>" placeholder="Facebook page" name="<?php echo $this->get_field_name('userFacebook'); ?>" type="text"
 					value="<?php echo $userFacebook; ?>" />
 				</label>
+				
+				<!--ESTILO PARA EL WIDGET DE FACEBOOK -->
+				<strong>Facebook timeline Style</strong>
+				</br>
+				<label for="<?php echo $this->get_field_id('anchoFacebook'); ?>">
+					<?php _e('Width:'); ?> 
+					<input class="widefat" id="<?php echo $this->
+					get_field_id('anchoFacebook'); ?>" placeholder="Width" name="<?php echo $this->get_field_name('anchoFacebook'); ?>" type="text"
+					value="<?php echo $anchoFacebook; ?>" />
+				</label>
+				
+				<label for="<?php echo $this->get_field_id('alturaFacebook'); ?>">
+					<?php _e('Height:'); ?> 
+					<input class="widefat" id="<?php echo $this->
+					get_field_id('alturaFacebook'); ?>" placeholder="Height" name="<?php echo $this->get_field_name('alturaFacebook'); ?>" type="text"
+					value="<?php echo $alturaFacebook; ?>" />
+				</label>
+				
 			</p>
 			
 			<p>
+			<h3>Hashtag Timeline</h3>
 				<label for="<?php echo $this->get_field_id('hashtag'); ?>">
-					<?php _e('hashtag:'); ?> 
+					<?php _e('Hashtag:'); ?> 
 					<input class="widefat" id="<?php echo $this->
 					get_field_id('hashtag'); ?>" placeholder="hashtag" name="<?php echo $this->get_field_name('hashtag'); ?>" type="text"
 					value="<?php echo $hashtag; ?>" />
 				</label>
 				<span id="info">Please, create your widget in your twitter account and set the "data-widget ID" here.</span>
+				</br>
 				<label for="<?php echo $this->get_field_id('widgetId'); ?>">
-					<?php _e(' You widget ID:'); ?> 
+					<?php _e('Your widget ID:'); ?> 
 					<input class="widefat" id="<?php echo $this->
 					get_field_id('widgetId'); ?>" placeholder="widgetId" name="<?php echo $this->get_field_name('widgetId'); ?>" type="text"
 					value="<?php echo $widgetId; ?>" />
