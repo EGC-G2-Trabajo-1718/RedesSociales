@@ -62,37 +62,37 @@ class Follow_Button_Widget extends WP_Widget {
 		}
 		
 		//TWITTER
-		$user = getUsername($instance, 'twitter');		
+		$user = static::getUsername($instance, 'twitter');		
 		if ($user!="")
 		echo '<div style="height:55px;" class="network" ><img src="'.$imagepath.'twitter.png" width=35% /><br/>
 		<a lang="en" class="twitter-follow-button" href="https://twitter.com/'.$user.'?ref_src=twsrc%5Etfw" data-show-screen-name="false" data-size="large" data-show-count="false"></a></div>';
 		
 		//FACEBOOK
-		$user = getUsername($instance, 'facebook');
+		$user = static::getUsername($instance, 'facebook');
 		if ($user!="")
 		echo '<div class="network" ><img src="'.$imagepath.'facebook.png" width=30% /><br/>
 		<iframe src="https://www.facebook.com/plugins/follow.php?href=https%3A%2F%2Fwww.facebook.com%2F'.$user.'&width=78&height=65&layout=button&size=large&show_faces=false&appId=800516066625151" width="78" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>';
 		
 		//INSTAGRAM
-		$user = getUsername($instance, 'instagram');
+		$user = static::getUsername($instance, 'instagram');
 		if ($user!="")
 		echo '<div class="network" id="instagram"><img src="'.$imagepath.'instagram.png" width=38% /><br/>
 		<a href="https://www.instagram.com/'.$user.'/?hl=en" target="_blank"><img src="'.$imagepath.'instagram-connect.png" width="16%" /></a></div>';
 		
 		//LINKEDIN
-		$user = getUsername($instance, 'linkedin');
+		$user = static::getUsername($instance, 'linkedin');
 		if ($user!="")
 		echo '<div class="network" id="linkedin"><img src="'.$imagepath.'linkedin.png" width=30% /><br/>
 		<a href="https://www.linkedin.com/in/'.$user.'" target="_blank"><img src="'.$imagepath.'linkedin-connect.png" width="15%" /></a></div>';
 		
 		//GOOGLEPLUS
-		$user = getUsername($instance, 'googleplus');
+		$user = static::getUsername($instance, 'googleplus');
 		if ($user!="")
 		echo '<div class="network" ><img src="'.$imagepath.'googleplus.png" width=30% /><br/>
 		<div class="g-follow" data-annotation="bubble" data-height="24" data-href="https://plus.google.com/'.$user.'" data-rel="author"></div></div>';
 		
 		//REDDIT
-		$user = getUsername($instance, 'reddit');
+		$user = static::getUsername($instance, 'reddit');
 		if ($user!="")
 		echo '<div class="network" ><img src="'.$imagepath.'reddit.png" width=30% /><br/>
 		<a href="https://www.reddit.com/user/'.$user.'" target="_blank"><img src="'.$imagepath.'reddit-connect.png" width="25%" /></a></div>';
@@ -189,24 +189,26 @@ class Follow_Button_Widget extends WP_Widget {
 			</p>
         <?php 
 	}
-}
+	
+	//AUXILIARY METHODS
 
-//AUXILIARY METHODS
-
-/* params: 
-$instance: $instance
-$socialnetwork: twitter, facebook, instagram, linkedin, googleplus, reddit (Choose one) */
-function getUsername($instance, $socialnetwork){
+	/* params: 
+	$instance: $instance
+	$socialnetwork: twitter, facebook, instagram, linkedin, googleplus, reddit (Choose one) */
+	public static function getUsername($instance, $socialnetwork){
 	
-	$network = ucfirst($socialnetwork);
+		$network = ucfirst($socialnetwork);
 	
-	$user = apply_filters('widget_user'.$network, $instance['user'.$network]);
+		$user = apply_filters('widget_user'.$network, $instance['user'.$network]);
 	
-	if($socialnetwork=="twitter"){
-		$user = str_replace("@", "", $user);
+		if($socialnetwork=="twitter"){
+			$user = str_replace("@", "", $user);
+		}
+	
+		return $user;
+	
 	}
-	
-	return $user;
-	
 }
+
+
 ?>
