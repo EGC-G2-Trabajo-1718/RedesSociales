@@ -42,7 +42,7 @@ before_script:
     - mkdir apache
     - mkdir mysql
     - cd ..
-    - cd RedesSociales_pruebas
+    - cd RedesSociales
     - docker-compose up -d
     - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
     - docker ps
@@ -50,7 +50,7 @@ before_script:
     - sudo chmod -R o+rwx tmp
     
     #INSTALACION DEL PLUGIN WORDPRESS
-    - cd RedesSociales_pruebas
+    - cd RedesSociales
     - sudo chmod -R o+rwx socialhub-egc
     - cp -r ./socialhub-egc ../tmp/wordpress/wp-content/plugins
     - cd tests-wp
@@ -62,7 +62,7 @@ before_script:
     - cd wordpress
     - cd ..
     - cd ..
-    - cd RedesSociales_pruebas
+    - cd RedesSociales
 
 script: 
     - phpunit --configuration phpunit.xml
