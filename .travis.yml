@@ -1,22 +1,83 @@
+# Tell Travis CI we're using PHP
 language: php
-php:
-  - '5.4'
-  - '5.6'
-  - '7.0'
-  - hhvm # on Trusty only
-  - nightly
 
-before_install:
-  - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
+# PHP version used in first build configuration.
+matrix:
+  include:
+  - php: "5.5"
+    env: 
+      - DB=mysql
+      - WP_VERSION=latest
+      - WP_PROJECT_TYPE=plugin 
+      - WP_MULTISITE=0 
+      - WP_TEST_URL=http://localhost:50000 
+      - WP_TEST_USER=test 
+      - WP_TEST_USER_PASS=test 
+      - WP_DEVELOP_DIR=../../tmp/wordpress
+  
+  - php: "5.4"
+    env: 
+      - DB=mysql
+      - WP_VERSION=latest
+      - WP_PROJECT_TYPE=plugin 
+      - WP_MULTISITE=0 
+      - WP_TEST_URL=http://localhost:50000 
+      - WP_TEST_USER=test 
+      - WP_TEST_USER_PASS=test 
+      - WP_DEVELOP_DIR=../../tmp/wordpress
 
-before_deploy:
-  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
-  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy-wordpress-subsistemas.sh
+services:
+  - docker  
 
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
-  on:
-    branch: master
-    php: '7.0'
+#before_install:
+#  - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
+
+before_script:
+    
+    #INSTALACION CON DOCKER COMPOSE
+    - cd ..
+    - mkdir tmp
+    - cd tmp
+    - mkdir wordpress
+    - mkdir apache
+    - mkdir mysql
+    - cd ..
+    - cd RedesSociales_pruebas
+    - docker-compose up -d
+    - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
+    - docker ps
+    - cd ..
+    - sudo chmod -R o+rwx tmp
+    
+    #INSTALACION DEL PLUGIN WORDPRESS
+    - cd RedesSociales_pruebas
+    - sudo chmod -R o+rwx socialhub-egc
+    - cp -r ./socialhub-egc ../tmp/wordpress/wp-content/plugins
+    - cd tests-wp
+    - sudo chmod -R o+rwx tests
+    - cp -r ./tests ../../tmp/wordpress
+    - cd ..
+    - cd ..
+    - cd tmp
+    - cd wordpress
+    - cd ..
+    - cd ..
+    - cd RedesSociales_pruebas
+
+script: 
+    - phpunit --configuration phpunit.xml
+
+after_script:
+    - docker-compose down --volumes
+
+#before_deploy:
+#  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+#  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy-wordpress-subsistemas.sh
+
+#deploy:
+#  skip_cleanup: true
+#  provider: script
+#  script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
+#  on:
+#    branch: master
+#    php: '7.0'
