@@ -63,6 +63,10 @@ before_script:
     - cd ..
     - cd ..
     - cd RedesSociales_pruebas
+    - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    - sudo chmod +x wp-cli.phar
+    - cd ~
+    - ls -a
 
 script: 
     - phpunit --configuration phpunit.xml
