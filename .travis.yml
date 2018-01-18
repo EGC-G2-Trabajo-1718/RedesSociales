@@ -62,7 +62,6 @@ before_script:
     - cp wp-tests-config.php ../tmp/wordpress
     - cp wp-config.php ../tmp/wordpress
     - cd ..
-    - cd ..
     - cd tmp
     - cd wordpress
     - ls -a
