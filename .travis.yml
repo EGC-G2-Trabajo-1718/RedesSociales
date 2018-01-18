@@ -76,8 +76,8 @@ before_script:
     - wp --info
     
     #CONFIGURACION WORDPRESS
-    #- cd ..
-    #- cd tmp/wordpress
+    - cd ..
+    - cd tmp/wordpress
     #ARCHIVO CONFIGURACION TESTS-WP
     #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
     #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
