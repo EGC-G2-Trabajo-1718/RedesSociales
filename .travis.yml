@@ -76,8 +76,8 @@ before_script:
     - wp --info
     
     #CONFIGURACION WORDPRESS
-    - cd ..
-    - cd tmp/wordpress
+    #- cd ..
+    #- cd tmp/wordpress
     #ARCHIVO CONFIGURACION TESTS-WP
     #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
     #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
@@ -91,6 +91,9 @@ before_script:
     - wp core install --url=localhost --title="Tests" --admin_user=test --admin_password=test --admin_email="danmarsua1@alum.us.es"
     #- wp core update
     #- wp core update-db
+    #INSTALACION DEL PLUGIN WORDPRESS
+    - zip -r socialhub-egc.zip ./socialhub-egc
+    - wp plugin install socialhub-egc.zip
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc/socialhub-egc.php
     
