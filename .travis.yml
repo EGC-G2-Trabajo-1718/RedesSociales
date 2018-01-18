@@ -44,7 +44,7 @@ before_script:
     - cd ..
     - cd RedesSociales
     - docker-compose up -d
-    #- mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
+    - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
     - docker ps
     - cd ..
     - sudo chmod -R o+rwx tmp
