@@ -44,30 +44,30 @@ before_script:
     - cd ..
     - cd RedesSociales
     - docker-compose up -d
-    - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
+    #- mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
     - docker ps
     - cd ..
     - sudo chmod -R o+rwx tmp
     
     #INSTALACION DEL PLUGIN WORDPRESS
     - cd RedesSociales
-    - sudo chmod -R o+rwx socialhub-egc
-    - cp -r ./socialhub-egc ../tmp/wordpress/wp-content/plugins
-    - cd tests-wp
-    - sudo chmod -R o+rwx tests
-    - cp -r ./tests ../../tmp/wordpress
-    - cd ..
-    - sudo chmod -R o+rwx wp-tests-config.php
-    - sudo chmod -R o+rwx wp-config.php
-    - cp wp-tests-config.php ../tmp/wordpress
-    - cp wp-config.php ../tmp/wordpress
-    - cd ..
-    - cd tmp
-    - cd wordpress
-    - ls -a
-    - cd ..
-    - cd ..
-    - cd RedesSociales
+    #- sudo chmod -R o+rwx socialhub-egc
+    #- cp -r ./socialhub-egc ../tmp/wordpress/wp-content/plugins
+    #- cd tests-wp
+    #- sudo chmod -R o+rwx tests
+    #- cp -r ./tests ../../tmp/wordpress
+    #- cd ..
+    #- sudo chmod -R o+rwx wp-tests-config.php
+    #- sudo chmod -R o+rwx wp-config.php
+    #- cp wp-tests-config.php ../tmp/wordpress
+    #- cp wp-config.php ../tmp/wordpress
+    #- cd ..
+    #- cd tmp
+    #- cd wordpress
+    #- ls -a
+    #- cd ..
+    #- cd ..
+    #- cd RedesSociales
     
     #INSTALACION WORDPRESS-SHELL
     - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -79,15 +79,18 @@ before_script:
     - cd ..
     - cd tmp/wordpress
     #ARCHIVO CONFIGURACION TESTS-WP
-    - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
-    - sed -i "s/yourusernamehere/root/" wp-tests-config.php
-    - sed -i "s/yourpasswordhere//" wp-tests-config.php
+    #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
+    #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
+    #- sed -i "s/yourpasswordhere//" wp-tests-config.php
     #ARCHIVO CONFIGURACION BD-WP
-    - sed -i "s/database_name_here/wordpress_tests/" wp-config.php
-    - sed -i "s/username_here/root/" wp-config.php
-    - sed -i "s/password_here//" wp-config.php
-    - wp core update
-    - wp core update-db
+    #- sed -i "s/database_name_here/wordpress_tests/" wp-config.php
+    #- sed -i "s/username_here/root/" wp-config.php
+    #- sed -i "s/password_here//" wp-config.php
+    - wp core download
+    - wp core config --dbname='wordpress_tests' --dbuser='root' --dbpass='' --dbhost='localhost' --dbprefix='wp_'
+    - wp core install --url=localhost --title="Tests" --admin_user=test --admin_password=test --admin_email="danmarsua1@alum.us.es"
+    #- wp core update
+    #- wp core update-db
     - wp scaffold plugin-tests socialhub-egc
     
 
