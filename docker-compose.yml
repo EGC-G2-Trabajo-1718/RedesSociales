@@ -3,9 +3,9 @@ version: '3'
 services:
 
    apache:
-     depends_on:
-       - db
-       - wordpress
+     #depends_on:
+       #- db
+       #- wordpress
      image: httpd
      restart: always
      ports:
