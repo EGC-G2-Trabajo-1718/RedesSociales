@@ -91,6 +91,7 @@ before_script:
     - wp core install --url=localhost --title="Tests" --admin_user=test --admin_password=test --admin_email="danmarsua1@alum.us.es"
     #- wp core update
     #- wp core update-db
+    - wp plugin list
     - wp scaffold plugin-tests socialhub-egc/socialhub-egc.php
     
 
