@@ -63,10 +63,19 @@ before_script:
     - cd ..
     - cd ..
     - cd RedesSociales
+    
+    #INSTALACION WORDPRESS-SHELL
     - curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     - sudo chmod +x wp-cli.phar
     - sudo mv wp-cli.phar ~/bin/wp
     - wp --info
+    
+    #CONFIGURACION WORDPRESS
+    - cd ..
+    - cd tmp/wordpress
+    - ls -a
+    - wp scaffold plugin-tests socialhub-egc
+    
 
 script: 
     - phpunit --configuration phpunit.xml
