@@ -92,7 +92,7 @@ before_script:
     #- wp core update
     #- wp core update-db
     #INSTALACION DEL PLUGIN WORDPRESS
-    - zip -r socialhub-egc.zip ./socialhub-egc
+    - zip -r socialhub-egc.zip ../../RedesSociales/socialhub-egc
     - wp plugin install socialhub-egc.zip
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc/socialhub-egc.php
