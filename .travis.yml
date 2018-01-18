@@ -86,7 +86,8 @@ before_script:
     - sed -i "s/database_name_here/wordpress_tests/" wp-config.php
     - sed -i "s/username_here/root/" wp-config.php
     - sed -i "s/password_here//" wp-config.php
-    - wp core install
+    - wp core update
+    - wp core update-db
     - wp scaffold plugin-tests socialhub-egc
     
 
