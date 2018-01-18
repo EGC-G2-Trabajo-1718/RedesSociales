@@ -7,24 +7,24 @@ matrix:
   - php: "5.5"
     env: 
       - DB=mysql
-      - WP_VERSION=latest
-      - WP_PROJECT_TYPE=plugin 
-      - WP_MULTISITE=0 
-      - WP_TEST_URL=http://localhost:50000 
-      - WP_TEST_USER=test 
-      - WP_TEST_USER_PASS=test 
-      - WP_DEVELOP_DIR=../../tmp/wordpress
+      #- WP_VERSION=latest
+      #- WP_PROJECT_TYPE=plugin 
+      #- WP_MULTISITE=0 
+      #- WP_TEST_URL=http://localhost:50000 
+      #- WP_TEST_USER=test 
+      #- WP_TEST_USER_PASS=test 
+      #- WP_DEVELOP_DIR=../../tmp/wordpress
   
   - php: "5.4"
     env: 
       - DB=mysql
-      - WP_VERSION=latest
-      - WP_PROJECT_TYPE=plugin 
-      - WP_MULTISITE=0 
-      - WP_TEST_URL=http://localhost:50000 
-      - WP_TEST_USER=test 
-      - WP_TEST_USER_PASS=test 
-      - WP_DEVELOP_DIR=../../tmp/wordpress
+      #- WP_VERSION=latest
+      #- WP_PROJECT_TYPE=plugin 
+      #- WP_MULTISITE=0 
+      #- WP_TEST_URL=http://localhost:50000 
+      #- WP_TEST_USER=test 
+      #- WP_TEST_USER_PASS=test 
+      #- WP_DEVELOP_DIR=../../tmp/wordpress
 
 services:
   - docker  
@@ -57,9 +57,15 @@ before_script:
     - sudo chmod -R o+rwx tests
     - cp -r ./tests ../../tmp/wordpress
     - cd ..
+    - sudo chmod -R o+rwx wp-tests-config.php
+    - sudo chmod -R o+rwx wp-config.php
+    - cp wp-tests-config.php ../tmp/wordpress
+    - cp wp-config.php ../tmp/wordpress
+    - cd ..
     - cd ..
     - cd tmp
     - cd wordpress
+    - ls -a
     - cd ..
     - cd ..
     - cd RedesSociales
@@ -73,7 +79,14 @@ before_script:
     #CONFIGURACION WORDPRESS
     - cd ..
     - cd tmp/wordpress
-    - ls -a
+    #ARCHIVO CONFIGURACION TESTS-WP
+    - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
+    - sed -i "s/yourusernamehere/root/" wp-tests-config.php
+    - sed -i "s/yourpasswordhere//" wp-tests-config.php
+    #ARCHIVO CONFIGURACION BD-WP
+    - sed -i "s/database_name_here/wordpress_tests/" wp-config.php
+    - sed -i "s/username_here/root/" wp-config.php
+    - sed -i "s/password_here//" wp-config.php
     - wp scaffold plugin-tests socialhub-egc
     
 
