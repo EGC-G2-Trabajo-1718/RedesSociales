@@ -115,6 +115,7 @@ before_script:
     - wp scaffold plugin-tests socialhub-egc
     - cd wp-content/plugins/socialhub-egc/bin
     - cat install-wp-tests.sh
+    - sed -i 's/mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA/##/' install-wp-tests.sh
     - bash install-wp-tests.sh wordpress_tests root '' localhost latest
     - cd ../../../../../../RedesSociales
     
