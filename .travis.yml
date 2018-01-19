@@ -112,7 +112,7 @@ before_script:
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc
-    - cd socialhub-egc
+    - cd wp-content/plugins/socialhub-egc
     - bash bin/install-wp-tests.sh wordpress_tests root password localhost latest
     - cd ../../../../../../RedesSociales
     
