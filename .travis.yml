@@ -107,7 +107,7 @@ before_script:
     - cd wp-content/plugins
     - cd socialhub-egc
     - ls -a
-    - cd ../../../../RedesSociales
+    - cd ../../../../../RedesSociales
     
 
 script: 
