@@ -94,7 +94,9 @@ before_script:
     #INSTALACION DEL PLUGIN WORDPRESS
     - cd ../../RedesSociales/socialhub-egc
     - zip -r socialhub-egc.zip .
-    - unzip socialhub-egc.zip -d .
+    - mkdir descomprimido
+    - unzip socialhub-egc.zip -d ./descomprimido
+    - cd descomprimido
     - ls -a
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
