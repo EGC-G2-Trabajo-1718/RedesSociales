@@ -44,7 +44,7 @@ before_script:
     - cd ..
     - cd RedesSociales
     - docker-compose up -d
-    #- mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
+    - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
     #- sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" -uroot
     - docker ps
     - cd ..
@@ -113,8 +113,9 @@ before_script:
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc
-    - cd wp-content/plugins/socialhub-egc
-    - bash bin/install-wp-tests.sh wordpress_tests root '' localhost latest
+    - cd wp-content/plugins/socialhub-egc/bin
+    - cat install-wp-tests.sh
+    - bash install-wp-tests.sh wordpress_tests root '' localhost latest
     - cd ../../../../../../RedesSociales
     
 
