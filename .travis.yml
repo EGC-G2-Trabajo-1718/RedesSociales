@@ -95,8 +95,9 @@ before_script:
     - cd ../../RedesSociales/socialhub-egc
     - zip -r socialhub-egc.zip .
     - sudo chmod -R o+rwx socialhub-egc.zip
-    - cp socialhub-egc.zip ../tmp/wordpress
-    - cd ../tmp/wordpress
+    - ls -a
+    - cp socialhub-egc.zip ../../tmp/wordpress
+    - cd ../../tmp/wordpress
     - ls -a
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
