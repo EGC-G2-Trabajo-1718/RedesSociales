@@ -95,7 +95,7 @@ before_script:
     - zip -r socialhub-egc.zip ../../RedesSociales/socialhub-egc
     - wp plugin install socialhub-egc.zip
     - wp plugin list
-    - wp scaffold plugin-tests socialhub-egc/socialhub-egc.php
+    - wp scaffold plugin-tests socialhub-egc
     
 
 script: 
