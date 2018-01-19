@@ -44,7 +44,9 @@ before_script:
     - cd ..
     - cd RedesSociales
     - docker-compose up -d
+    - sudo mysql
     - mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
+    - mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" -uroot
     - docker ps
     - cd ..
     - sudo chmod -R o+rwx tmp
