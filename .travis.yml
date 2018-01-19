@@ -91,12 +91,20 @@ before_script:
     - wp core install --url=localhost --title="Tests" --admin_user=test --admin_password=test --admin_email="danmarsua1@alum.us.es"
     #- wp core update
     #- wp core update-db
+    
     #INSTALACION DEL PLUGIN WORDPRESS
     - cd ../../RedesSociales/socialhub-egc
     - zip -r socialhub-egc.zip .
     - sudo chmod -R o+rwx socialhub-egc.zip
     - cp socialhub-egc.zip ../../tmp/wordpress
-    - cd ../tests-wp
+    - cd ..
+    
+    #ARCHIVO CONFIGURACION TESTS-WP
+    #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
+    #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
+    #- sed -i "s/yourpasswordhere//" wp-tests-config.php
+    - cp wp-tests-config.php ../tmp/wordpress
+    - cd tests-wp
     - sudo chmod -R o+rwx tests
     - cp -r ./tests ../../tmp/wordpress
     - cd ../../tmp/wordpress
@@ -104,10 +112,9 @@ before_script:
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc
-    - cd wp-content/plugins
     - cd socialhub-egc
-    - ls -a
-    - cd ../../../../../RedesSociales
+    - bash bin/install-wp-tests.sh wordpress_tests root password localhost latest
+    - cd ../../../../../../RedesSociales
     
 
 script: 
