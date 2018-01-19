@@ -96,11 +96,16 @@ before_script:
     - zip -r socialhub-egc.zip .
     - sudo chmod -R o+rwx socialhub-egc.zip
     - cp socialhub-egc.zip ../../tmp/wordpress
+    - cd ../tests-wp
+    - sudo chmod -R o+rwx tests
+    - cp -r ./tests ../../tmp/wordpress
     - cd ../../tmp/wordpress
+    - ls -a
     - wp plugin install socialhub-egc.zip --activate
     - wp plugin list
     - wp scaffold plugin-tests socialhub-egc
     - cd wp-content/plugins
+    - cd socialhub-egc
     - ls -a
     - cd ../../../../RedesSociales
     
