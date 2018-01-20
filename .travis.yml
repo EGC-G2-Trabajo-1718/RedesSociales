@@ -127,6 +127,7 @@ before_script:
     - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
     - cd ..
     - ls -a
+    - cd RedesSociales
     - sudo chmod -R o+rwx socialhub-egc
     - mv ./socialhub-egc "/tmp/wordpress/src/wp-content/plugins"
     - cd ../tmp/wordpress
