@@ -136,8 +136,7 @@ before_script:
     - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
     - cd "/tmp/wordpress/src/wp-content/plugins/socialhub-egc"
-    - ls -a
-    
+    - ls -a 
 
 script: 
     - phpunit
