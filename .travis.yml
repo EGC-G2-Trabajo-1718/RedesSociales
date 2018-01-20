@@ -11,12 +11,9 @@ matrix:
 #  - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
 
 before_script:
-
     - export PLUGIN_SLUG=$(basename $(pwd))
     - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
-    - ls -a
     - cd ..
-    - ls -a
     - mv $PLUGIN_SLUG "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
     - cd /tmp/wordpress
     - mysql -e "CREATE DATABASE wordpress_tests;" -uroot
@@ -25,7 +22,6 @@ before_script:
     - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
     - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
-    - ls -a 
 
 script: phpunit
 
