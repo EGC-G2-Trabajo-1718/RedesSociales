@@ -139,8 +139,7 @@ before_script:
     - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
     - ls -a 
 
-script: 
-    - phpunit
+script: phpunit
     #- phpunit --configuration phpunit.xml
 
 #after_script:
