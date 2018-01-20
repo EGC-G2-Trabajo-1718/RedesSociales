@@ -1,4 +1,4 @@
-<phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="true">
+<phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="always">
     <testsuites>
         <!-- Default test suite to run all tests -->
         <testsuite>
