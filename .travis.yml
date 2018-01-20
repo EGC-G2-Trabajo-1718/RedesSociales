@@ -124,10 +124,12 @@ before_script:
     #- ls -a
     
     #OTRO TIPO DE INSTALACION
+    - export PLUGIN_SLUG=$(basename $(pwd))
     - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
     - ls -a
-    - sudo chmod -R o+rwx socialhub-egc
-    - mv ./socialhub-egc "/tmp/wordpress/src/wp-content/plugins"
+    - cd ..
+    - ls -a
+    - mv $PLUGIN_SLUG "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
     - cd /tmp/wordpress
     - ls -a
     - mysql -e "CREATE DATABASE wordpress_tests;" -uroot
@@ -135,7 +137,7 @@ before_script:
     - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
     - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
-    - cd "/tmp/wordpress/src/wp-content/plugins/socialhub-egc"
+    - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
     - ls -a 
 
 script: 
