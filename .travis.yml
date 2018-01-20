@@ -56,13 +56,8 @@ before_script:
     - cd tests-wp
     - sudo chmod -R o+rwx tests
     - cp -r ./tests ../../tmp/wordpress
-    - cd ..
-    - cd ..
-    - cd tmp
-    - cd wordpress
-    - cd ..
-    - cd ..
-    - cd RedesSociales
+    - cd ../tmp/wordpress/wp-content/plugins/socialhub-egc
+    - ls -a
 
 script: 
     - phpunit --configuration phpunit.xml
