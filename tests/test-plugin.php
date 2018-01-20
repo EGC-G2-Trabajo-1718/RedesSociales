@@ -13,10 +13,6 @@ class Test_Plugin extends WP_UnitTestCase {
   function test_plugin_activated() {
     $this->assertTrue( is_plugin_active( "socialhub-egc/socialhub-egc.php" ) );
   }
-	
-  function test_plugin_activated2() {
-    $this->assertTrue( is_plugin_active( "socialhub-egc" ) );
-  }
   
   //Basic Test (TEMPORALY)
   function neliovat_get_vat( $quantity ) {
