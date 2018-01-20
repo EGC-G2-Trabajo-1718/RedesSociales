@@ -125,12 +125,10 @@ before_script:
     
     #OTRO TIPO DE INSTALACION
     - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
-    - cd ..
     - ls -a
-    - cd RedesSociales
     - sudo chmod -R o+rwx socialhub-egc
     - mv ./socialhub-egc "/tmp/wordpress/src/wp-content/plugins"
-    - cd ../tmp/wordpress
+    - cd /tmp/wordpress
     - ls -a
     - mysql -e "CREATE DATABASE wordpress_tests;" -uroot
     - cp wp-tests-config-sample.php wp-tests-config.php
@@ -138,6 +136,7 @@ before_script:
     - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
     - cd "/tmp/wordpress/src/wp-content/plugins/socialhub-egc"
+    - ls -a
     
 
 script: 
