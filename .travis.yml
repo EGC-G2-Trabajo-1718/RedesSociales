@@ -7,8 +7,8 @@ matrix:
   - php: "5.5"
   - php: "5.4"
 
-#before_install:
-#  - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
+before_install:
+    - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
 
 before_script:
     - export PLUGIN_SLUG=$(basename $(pwd))
@@ -25,14 +25,14 @@ before_script:
 
 script: phpunit --colors="always"
 
-#before_deploy:
-#  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
-#  - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy-wordpress-subsistemas.sh
+before_deploy:
+    - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+    - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy-wordpress-subsistemas.sh
 
-#deploy:
-#  skip_cleanup: true
-#  provider: script
-#  script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
-#  on:
-#    branch: master
-#    php: '7.0'
+deploy:
+    skip_cleanup: true
+    provider: script
+    script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
+    on:
+     branch: develop
+     php: '5.5'
