@@ -11,7 +11,11 @@ class Test_Plugin extends WP_UnitTestCase {
   
   // Check that that activation doesn't break
   function test_plugin_activated() {
-    $this->assertTrue( is_plugin_active( PLUGIN_PATH ) );
+    $this->assertTrue( is_plugin_active( "socialhub-egc/socialhub-egc.php" ) );
+  }
+	
+  function test_plugin_activated() {
+    $this->assertTrue( is_plugin_active( "socialhub-egc" ) );
   }
   
   //Basic Test (TEMPORALY)
