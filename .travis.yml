@@ -5,125 +5,13 @@ language: php
 matrix:
   include:
   - php: "5.5"
-    env: 
-      -WP_DEVELOP_DIR=tmp/wordpress
-      #- DB=mysql
-      #- WP_VERSION=latest
-      #- WP_PROJECT_TYPE=plugin 
-      #- WP_MULTISITE=0 
-      #- WP_TEST_URL=http://localhost:50000 
-      #- WP_TEST_USER=test 
-      #- WP_TEST_USER_PASS=test 
-      #- WP_DEVELOP_DIR=../../tmp/wordpress
-  
   - php: "5.4"
-    env: 
-      -WP_DEVELOP_DIR=tmp/wordpress
-      #- DB=mysql
-      #- WP_VERSION=latest
-      #- WP_PROJECT_TYPE=plugin 
-      #- WP_MULTISITE=0 
-      #- WP_TEST_URL=http://localhost:50000 
-      #- WP_TEST_USER=test 
-      #- WP_TEST_USER_PASS=test 
-      #- WP_DEVELOP_DIR=../../tmp/wordpress
-
-#services:
-  #- docker  
 
 #before_install:
 #  - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
 
 before_script:
     
-    #INSTALACION CON DOCKER COMPOSE
-    #- cd ..
-    #- mkdir tmp
-    #- cd tmp
-    #- mkdir wordpress
-    #- mkdir apache
-    #- mkdir mysql
-    #- cd ..
-    #- cd RedesSociales
-    #- docker-compose up -d
-    #- mysql -e "create database IF NOT EXISTS wordpress_tests;" -uroot
-    #- sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" -uroot
-    #- docker ps
-    #- cd ..
-    #- sudo chmod -R o+rwx tmp
-    
-    #INSTALACION DEL PLUGIN WORDPRESS
-    #- cd RedesSociales
-    #- sudo chmod -R o+rwx socialhub-egc
-    #- cp -r ./socialhub-egc ../tmp/wordpress/wp-content/plugins
-    #- cd tests-wp
-    #- sudo chmod -R o+rwx tests
-    #- cp -r ./tests ../../tmp/wordpress
-    #- cd ..
-    #- sudo chmod -R o+rwx wp-tests-config.php
-    #- sudo chmod -R o+rwx wp-config.php
-    #- cp wp-tests-config.php ../tmp/wordpress
-    #- cp wp-config.php ../tmp/wordpress
-    #- cd ..
-    #- cd tmp
-    #- cd wordpress
-    #- ls -a
-    #- cd ..
-    #- cd ..
-    #- cd RedesSociales
-    
-    #INSTALACION WORDPRESS-SHELL
-    #- curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-    #- sudo chmod +x wp-cli.phar
-    #- sudo mv wp-cli.phar ~/bin/wp
-    #- wp --info
-    
-    #CONFIGURACION WORDPRESS
-    #- cd ..
-    #- cd tmp/wordpress
-    #ARCHIVO CONFIGURACION TESTS-WP
-    #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
-    #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
-    #- sed -i "s/yourpasswordhere//" wp-tests-config.php
-    #ARCHIVO CONFIGURACION BD-WP
-    #- sed -i "s/database_name_here/wordpress_tests/" wp-config.php
-    #- sed -i "s/username_here/root/" wp-config.php
-    #- sed -i "s/password_here//" wp-config.php
-    #- wp core download
-    #- wp core config --dbname='wordpress_tests' --dbuser='root' --dbpass='' --dbhost='localhost' --dbprefix='wp_'
-    #- wp core install --url=localhost --title="Tests" --admin_user=test --admin_password=test --admin_email="danmarsua1@alum.us.es"
-    #- wp core update
-    #- wp core update-db
-    
-    #INSTALACION DEL PLUGIN WORDPRESS
-    #- cd ../../RedesSociales/socialhub-egc
-    #- zip -r socialhub-egc.zip .
-    #- sudo chmod -R o+rwx socialhub-egc.zip
-    #- cp socialhub-egc.zip ../../tmp/wordpress
-    #- cd ..
-    
-    #ARCHIVO CONFIGURACION TESTS-WP
-    #- sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
-    #- sed -i "s/yourusernamehere/root/" wp-tests-config.php
-    #- sed -i "s/yourpasswordhere//" wp-tests-config.php
-    #- cp wp-tests-config.php ../tmp/wordpress
-    #- cd tests-wp
-    #- sudo chmod -R o+rwx tests
-    #- cp -r ./tests ../../tmp/wordpress
-    #- cd ../../tmp/wordpress
-    #- ls -a
-    #- wp plugin install socialhub-egc.zip --activate
-    #- wp plugin list
-    #- wp scaffold plugin-tests socialhub-egc
-    #- cd wp-content/plugins/socialhub-egc/bin
-    #- cat install-wp-tests.sh
-    #- sed -i 's/mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA/##/' install-wp-tests.sh
-    #- cat install-wp-tests.sh
-    #- bash install-wp-tests.sh wordpress_tests root '' localhost latest
-    #- cd ..
-    #- ls -a
-    
-    #OTRO TIPO DE INSTALACION
     - export PLUGIN_SLUG=$(basename $(pwd))
     - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
     - ls -a
@@ -140,10 +28,6 @@ before_script:
     - ls -a 
 
 script: phpunit
-    #- phpunit --configuration phpunit.xml
-
-#after_script:
-    #- docker-compose down --volumes
 
 #before_deploy:
 #  - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
