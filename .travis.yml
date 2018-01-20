@@ -120,17 +120,6 @@ before_script:
     - bash install-wp-tests.sh wordpress_tests root '' localhost latest
     - cd ..
     - ls -a
-    - cd ..
-    - ls -a
-    - cd ..
-    - ls -a
-    - cd ..
-    - ls -a
-    - cd ..
-    - ls -a
-    - cd ..
-    - ls -a
-    - cd RedesSociales
     
 
 script: 
