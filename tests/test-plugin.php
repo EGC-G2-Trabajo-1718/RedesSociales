@@ -4,12 +4,12 @@ class Test_Plugin extends WP_UnitTestCase {
 
   function test_tests() {
 	  $this->assertTrue( true );
-	  $this->echo "Test are running";  
+	  return "Test are running";  
   }
 
   function test_plugin_activated() {
 	  $this->assertTrue( is_plugin_active( "socialhub-egc/socialhub-egc.php" ) );
-	  $this->echo "Plugin activated";
+	  return "Plugin activated";
   }
   
 }
