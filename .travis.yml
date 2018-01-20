@@ -126,6 +126,11 @@ before_script:
     - ls -a
     - cd ..
     - ls -a
+    - cd ..
+    - ls -a
+    - cd ..
+    - ls -a
+    - cd RedesSociales
     
 
 script: 
