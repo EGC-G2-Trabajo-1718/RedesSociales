@@ -28,19 +28,19 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
 	}
 	
-	function test_1{
+	function test_1(){
 		include 'socialhub-egc';
 	}
 	
-	function test_2{
+	function test_2(){
 		include '../socialhub-egc';
 	}
 	
-	function test_3{
+	function test_3(){
 		include '../../socialhub-egc';
 	}
 	
-	function test_4{
+	function test_4(){
 		include '../../../../../../socialhub-egc';
 	}
   
