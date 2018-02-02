@@ -15,7 +15,8 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	//Test that Follow_Button_Widget is registered in Wordpress as Widget
 	function test_register_widget_core_widget() {
-		require 'tmp/wordpress/src/wp-content/plugins/socialhub-egc/widgets/class-follow-button-widget.php';
+		//require 'tmp/wordpress/src/wp-content/plugins/socialhub-egc/widgets/class-follow-button-widget.php';
+		require dirname(__FILE__);
 		$widget = new Follow_Button_Widget();
 		//$this->assertEquals( '..socialhub-egc/widgets/class-follow-button-widget', $widget->widget_options['classname'] );
 		//global $wp_widget_factory;
