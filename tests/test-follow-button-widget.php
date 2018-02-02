@@ -16,7 +16,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	//Test that Follow_Button_Widget is registered in Wordpress as Widget
 	function test_register_widget_core_widget() {
 		global $wp_widget_factory;
-		register_widget( 'Follow_Button_Widget' );
+		register_widget( 'widgets/class-follow-button-widget.php' );
 		//unregister_widget( 'widgets/class-follow-button-widget.php' );
 		//register_widget( 'widgets/class-follow-button-widget.php' );
 		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
