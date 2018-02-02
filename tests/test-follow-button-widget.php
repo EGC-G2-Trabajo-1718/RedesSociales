@@ -27,5 +27,21 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		//register_widget( 'widgets/class-follow-button-widget.php' );
 		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
 	}
+	
+	function test_1{
+		include 'socialhub-egc';
+	}
+	
+	function test_2{
+		include '../socialhub-egc';
+	}
+	
+	function test_3{
+		include '../../socialhub-egc';
+	}
+	
+	function test_4{
+		include '../../../../../../socialhub-egc';
+	}
   
 }
