@@ -18,7 +18,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		global $wp_widget_factory;
 		unregister_widget( 'widgets/class-follow-button-widget.php' );
 		register_widget( 'widgets/class-follow-button-widget.php' );
-		$this->assertTrue( isset( $wp_widget_factory->widgets['widgets/class-follow-button-widget.php'] ) );
+		$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
 	}
   
 }
