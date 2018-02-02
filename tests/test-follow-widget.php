@@ -1,5 +1,5 @@
 <?php
-class Test_Plugin extends WP_UnitTestCase {
+class Test_Follow_Button_Widget extends WP_UnitTestCase {
 
 	//Tests is running
 	function test_tests() {
