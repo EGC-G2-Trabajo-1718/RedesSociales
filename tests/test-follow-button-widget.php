@@ -32,7 +32,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	}
 	
 	function test_2(){
-		include '../socialhub-egc';
+		include '../socialhub-egc/widgets/class-follow-button-widget.php';
 	}
 	
 	function test_3(){
