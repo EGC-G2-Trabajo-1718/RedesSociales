@@ -4,7 +4,6 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 
 	//Tests is running
 	function test_tests() {
-		include '../../../../../socialhub-egc';
 		$this->assertTrue( true );
 		return "Test are running";  
 	}
