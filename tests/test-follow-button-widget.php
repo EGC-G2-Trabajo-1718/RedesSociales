@@ -3,7 +3,6 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	//Test that the wordpress plugin is activated
 	function test_plugin_activated() {
-		//include '../../../../socialhub-egc';
 	  	$this->assertTrue( is_plugin_active( "socialhub-egc/socialhub-egc.php" ) );
 	  	return "Plugin activated";
   	}
