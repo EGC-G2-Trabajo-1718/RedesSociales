@@ -10,7 +10,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	//Test that the wordpress plugin is activated
 	function test_plugin_activated() {
-	  	$this->assertTrue(is_plugin_active( "socialhub-egc/socialhub-egc.php" ));
+	  	$this->assertTrue(is_plugin_active( "socialhub-egc/socialhub-egc.php" ),"Plugin is not active");
 	  	return "Plugin activated";
   	}
 	
@@ -25,7 +25,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		//unregister_widget( 'widgets/class-follow-button-widget.php' );
 		//register_widget( 'widgets/class-follow-button-widget.php' );
 		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
-	}
+	}*/
 	
 	function test_1(){
 		include 'socialhub-egc';
@@ -40,7 +40,31 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	}
 	
 	function test_4(){
+		include '../../../socialhub-egc';
+	}
+	
+	function test_5(){
+		include '../../../../socialhub-egc';
+	}
+	
+	function test_6(){
+		include '../../../../../socialhub-egc';
+	}
+	
+	function test_7(){
 		include '../../../../../../socialhub-egc';
-	}*/
+	}
+	
+	function test_8(){
+		include '../../../../../../../socialhub-egc';
+	}
+	
+	function test_9(){
+		include '../../../../../../../../socialhub-egc';
+	}
+	
+	function test_9(){
+		include '../../../../../../../../../socialhub-egc';
+	}
   
 }
