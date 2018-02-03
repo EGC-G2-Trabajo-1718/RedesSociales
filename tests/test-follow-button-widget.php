@@ -63,7 +63,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		include '../../../../../../../../socialhub-egc';
 	}
 	
-	function test_9(){
+	function test_10(){
 		include '../../../../../../../../../socialhub-egc';
 	}
   
