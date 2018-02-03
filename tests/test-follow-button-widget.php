@@ -28,7 +28,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	}*/
 	
 	function test_1(){
-		include 'socialhub-egc';
+		include getwcd();
 	}
 	
 	function test_2(){
