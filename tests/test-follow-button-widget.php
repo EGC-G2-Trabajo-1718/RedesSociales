@@ -19,12 +19,8 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		//require 'tmp/wordpress/src/wp-content/plugins/socialhub-egc/widgets/class-follow-button-widget.php';
 		include_once '../socialhub-egc/widgets/class-follow-button-widget.php';
 		$widget = new Follow_Button_Widget();
-		//$this->assertEquals( '..socialhub-egc/widgets/class-follow-button-widget', $widget->widget_options['classname'] );
-		//global $wp_widget_factory;
-		//register_widget( 'widgets/class-follow-button-widget.php' );
-		//unregister_widget( 'widgets/class-follow-button-widget.php' );
-		//register_widget( 'widgets/class-follow-button-widget.php' );
-		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
+		global $wp_widget_factory;
+		$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
 	}
 	
 	/*function test_1(){
