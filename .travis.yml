@@ -24,6 +24,9 @@ before_script:
     - cd "/tmp/wordpress/src/wp-content/plugins"
     - ls -a
     - cd "$PLUGIN_SLUG"
+    - cp -r ./socialhub-egc ..
+    - ls -a
+    - cd "$PLUGIN_SLUG"
 
 script: phpunit --colors="always"
 
