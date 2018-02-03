@@ -21,10 +21,10 @@ before_script:
     - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
     - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
     - sed -i "s/yourpasswordhere//" wp-tests-config.php
-    - cd "/tmp/wordpress/src/wp-content/plugins"
+    - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
     - ls -a
-    - cd "$PLUGIN_SLUG"
     - cp -r ./socialhub-egc ..
+    - cd ..
     - ls -a
     - cd "$PLUGIN_SLUG"
 
