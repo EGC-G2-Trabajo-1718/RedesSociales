@@ -9,13 +9,13 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
   	}
 
 	// Check that the plugin is active
-	function test_plugin_active() {
+	/*function test_plugin_active() {
 		// WP_Error on invalid file or 'NULL' on success 
 		$result = activate_plugin('../../../socialhub-egc/socialhub-egc.php');
 		$this->assertNull($result);
 
 		return "Plugin active!";
-	}
+	}*/
 
 	//Tests is running
 	/*function test_tests() {
