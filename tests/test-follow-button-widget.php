@@ -15,9 +15,9 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
   	}
 	
 	//Test that Follow_Button_Widget is registered in Wordpress as Widget
-	/*function test_register_widget_core_widget() {
+	function test_register_widget_core_widget() {
 		//require 'tmp/wordpress/src/wp-content/plugins/socialhub-egc/widgets/class-follow-button-widget.php';
-		include '../../../socialhub-egc';
+		include_once '../socialhub-egc/widgets/class-follow-button-widget.php';
 		$widget = new Follow_Button_Widget();
 		//$this->assertEquals( '..socialhub-egc/widgets/class-follow-button-widget', $widget->widget_options['classname'] );
 		//global $wp_widget_factory;
@@ -25,9 +25,9 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 		//unregister_widget( 'widgets/class-follow-button-widget.php' );
 		//register_widget( 'widgets/class-follow-button-widget.php' );
 		//$this->assertTrue( isset( $wp_widget_factory->widgets['Follow_Button_Widget'] ) );
-	}*/
+	}
 	
-	function test_1(){
+	/*function test_1(){
 		include getcwd();
 	}
 	
@@ -65,6 +65,6 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	function test_10(){
 		include '../../../../../../../../../socialhub-egc';
-	}
+	}*/
   
 }
