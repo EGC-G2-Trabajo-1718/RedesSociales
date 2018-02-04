@@ -1,5 +1,5 @@
 <?php
-include_once '../../../socialhub-egc/widgets/class-follow-button-widget.php';
+
 class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	//Test that Follow_Button_Widget is registered in Wordpress as Widget
