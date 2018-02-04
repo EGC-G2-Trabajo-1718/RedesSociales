@@ -5,6 +5,7 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 	//Test that Comment_Box_Widget is registered in Wordpress as Widget
 	function test_register_widget_core_widget() {
 
+		global $wp_widget_factory;
 		$this->assertTrue( isset( $wp_widget_factory->widgets['Comment_Box_Widget'] ) );
 
 	}
