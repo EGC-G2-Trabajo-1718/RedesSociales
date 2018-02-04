@@ -4,7 +4,7 @@
         <testsuite name="Plugin Socialhub-EGC tests">
 	    <file>tests/test-plugin.php</file>
 	    <file>tests/test-follow-button-widget.php</file>
-	    <file>tests/test-share-button-widget</file>
+	    <file>tests/test-share-button-widget.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
