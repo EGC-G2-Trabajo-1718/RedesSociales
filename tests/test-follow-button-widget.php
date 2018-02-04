@@ -13,7 +13,6 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	//Test that Follow_Button_Widget is able to create
 	function test_create_widget() {
 
-		include_once '../socialhub-egc/widgets/class-follow-button-widget.php';
 		$widget = new Follow_Button_Widget();
 
 	}
