@@ -1,7 +1,8 @@
 <phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="true">
     <testsuites>
         <!-- Default test suite to run all tests -->
-        <testsuite>
+        <testsuite name="Plugin Socialhub-EGC tests">
+	    <file>tests/test-plugin.php</file>
             <directory prefix="test-" suffix=".php">tests</directory>
         </testsuite>
     </testsuites>
