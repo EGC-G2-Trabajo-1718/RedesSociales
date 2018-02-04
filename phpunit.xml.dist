@@ -3,7 +3,8 @@
         <!-- Default test suite to run all tests -->
         <testsuite name="Plugin Socialhub-EGC tests">
 	    <file>tests/test-plugin.php</file>
-            <directory prefix="test-" suffix=".php">tests</directory>
+	    <file>tests/test-follow-button-widget.php</file>
+	    <file>tests/test-share-button-widget.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
