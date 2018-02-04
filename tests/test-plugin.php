@@ -1,4 +1,4 @@
-//Tests is running
+	//Tests is running
 	function test_tests() {
 		$this->assertTrue( true );
 		return "Tests are running";  
