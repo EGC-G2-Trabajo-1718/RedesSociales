@@ -10,7 +10,8 @@ class Test_Share_Button_Widget extends WP_UnitTestCase {
 	
 	// Test 1: Check that the widget is correctly registered in WordPress
 	function test_1() {
-		$this->assertTrue(is_active_widget('Share_Button_Widget'), 'Widget is not active!');
+		global $wp_widget_factory;
+		$this->assertTrue(isset($wp_widget_factory->widgets['Share_Button_Widget']), 'Widget is not registered!');
 	}
 
 	// Test 2: Check that Twitter username is not allowed with spaces, 
