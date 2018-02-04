@@ -17,7 +17,7 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	function test_wp_widget_constructor() {
 		include_once '../socialhub-egc/widgets/class-follow-button-widget.php';
 
-		$name = 'follow-button-egc';
+		$name = 'Follow Buttons by EGC';
 		$widget = new Follow_Button_Widget();
 
 		$this->assertEquals( $name, $widget->name );
