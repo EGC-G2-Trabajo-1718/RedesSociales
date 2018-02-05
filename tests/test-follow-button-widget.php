@@ -14,7 +14,8 @@ class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	function test_create_widget() {
 
 		$widget = new Follow_Button_Widget();
-
+		$this->assertNotNull($widget,'Error in "Follow Button Widget" constructor');
+		
 	}
 
 	//Test that probe the construct run correctly for this widget
