@@ -1,8 +1,8 @@
 <?php
 /**
- * Test_Plugin
+ * Test_RSS
  *
- * Test that plugin is active.
+ * Test set to test widget performance.
  *
  * @see WP_UnitTestCase
  */
