@@ -19,7 +19,7 @@ class Test_RSS extends WP_UnitTestCase {
 
 
  		$result = RSS_Widget::isActivated("no");
- 		$this->assertEquals("", $result, "Function does not work properly.")
+ 		$this->assertEquals("", $result, "Function does not work properly.");
  
  	}
 

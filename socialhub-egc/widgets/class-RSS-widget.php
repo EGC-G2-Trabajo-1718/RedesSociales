@@ -100,7 +100,7 @@ class RSS_Widget extends WP_Widget {
 	    $instance = $new_instance;
     
    		return $instance;
-  }
+  	}
 	
 	/**
 	 * Settings update form
@@ -147,7 +147,7 @@ class RSS_Widget extends WP_Widget {
 	}
 
 	public static function isActivated($activation){
-		
+
 		$result;
 		if ($activation != "yes") {
 			$result = "";
