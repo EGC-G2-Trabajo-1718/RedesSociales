@@ -21,8 +21,7 @@ class Timeline_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Get the base ID used to identify widgets of this type installed in a 
-	 widget area
+	 * Get the base ID used to identify widgets of this type installed in a widget area
 	 *
 	 * @return string Widget base ID
 	 */
@@ -43,10 +42,8 @@ class Timeline_Widget extends WP_Widget {
 	/**
 	 * Front-end display of widget
 	 *
-	 * @param array $args     Display arguments including before_title, 
-	 after_title, before_widget, and after_widget
-	 * @param array $instance The settings for the particular instance of 
-	 the widget
+	 * @param array $args     Display arguments including before_title, after_title, before_widget, and after_widget
+	 * @param array $instance The settings for the particular instance of the widget
 	 *
 	 * @return void
 	 */
@@ -143,11 +140,11 @@ class Timeline_Widget extends WP_Widget {
 		$instance['userFacebook'] = strip_tags($new_instance['userFacebook']);
 		$instance['hashtag'] = strip_tags($new_instance['hashtag']);
 		$instance['widgetId'] = strip_tags($new_instance['widgetId']);
-		$instance['alturaFacebook'] = strip_tags($new_instance['alturaFacebook']);
-		$instance['anchoFacebook'] = strip_tags($new_instance['anchoFacebook']);
-		$instance['heightTwitter'] = strip_tags($new_instance['heightTwitter']);
-		$instance['theme'] = strip_tags($new_instance['theme']);
-		$instance['widthTwitter'] = strip_tags($new_instance['widthTwitter']);
+		$instance['alturaFacebook'] = static::checkHeight(strip_tags($new_instance['alturaFacebook']));
+		$instance['anchoFacebook'] = static::checkWidth(strip_tags($new_instance['anchoFacebook']));
+		$instance['heightTwitter'] = static::checkHeight(strip_tags($new_instance['heightTwitter']));
+		$instance['widthTwitter'] = static::checkWidth(strip_tags($new_instance['widthTwitter']));
+		$instance['theme'] = strip_tags($new_instance['theme']);		
 		$instance = $new_instance;
 
 		return $instance;
@@ -187,20 +184,20 @@ class Timeline_Widget extends WP_Widget {
 					get_field_id('userTwitter'); ?>" placeholder="TwitterUser" name="<?php echo $this->get_field_name('userTwitter'); ?>" type="text"
 					value="<?php echo $userTwitter; ?>" />
 				</label>
-				<!--ESTILO PARA EL WIDGET DE FACEBOOK -->
+				<!--ESTILO PARA EL WIDGET DE TWITTER -->
 				<strong>Twitter timeline Style</strong>
 				</br>
 				<label for="<?php echo $this->get_field_id('widthTwitter'); ?>">
 					<?php _e('Width:'); ?> 
 					<input class="widefat" id="<?php echo $this->
-					get_field_id('widthTwitter'); ?>" placeholder="Width" name="<?php echo $this->get_field_name('widthTwitter'); ?>" type="text"
+					get_field_id('widthTwitter'); ?>" placeholder="Width (>= 100)" name="<?php echo $this->get_field_name('widthTwitter'); ?>" type="text"
 					value="<?php echo $widthTwitter; ?>" />
 				</label>
 				
 				<label for="<?php echo $this->get_field_id('heightTwitter'); ?>">
 					<?php _e('Height:'); ?> 
 					<input class="widefat" id="<?php echo $this->
-					get_field_id('heightTwitter'); ?>" placeholder="Height" name="<?php echo $this->get_field_name('heightTwitter'); ?>" type="text"
+					get_field_id('heightTwitter'); ?>" placeholder="Height (>= 300)" name="<?php echo $this->get_field_name('heightTwitter'); ?>" type="text"
 					value="<?php echo $heightTwitter; ?>" />
 				</label>
 				
@@ -228,14 +225,14 @@ class Timeline_Widget extends WP_Widget {
 				<label for="<?php echo $this->get_field_id('anchoFacebook'); ?>">
 					<?php _e('Width:'); ?> 
 					<input class="widefat" id="<?php echo $this->
-					get_field_id('anchoFacebook'); ?>" placeholder="Width" name="<?php echo $this->get_field_name('anchoFacebook'); ?>" type="text"
+					get_field_id('anchoFacebook'); ?>" placeholder="Width (>= 100)" name="<?php echo $this->get_field_name('anchoFacebook'); ?>" type="text"
 					value="<?php echo $anchoFacebook; ?>" />
 				</label>
 				
 				<label for="<?php echo $this->get_field_id('alturaFacebook'); ?>">
 					<?php _e('Height:'); ?> 
 					<input class="widefat" id="<?php echo $this->
-					get_field_id('alturaFacebook'); ?>" placeholder="Height" name="<?php echo $this->get_field_name('alturaFacebook'); ?>" type="text"
+					get_field_id('alturaFacebook'); ?>" placeholder="Height (>= 300)" name="<?php echo $this->get_field_name('alturaFacebook'); ?>" type="text"
 					value="<?php echo $alturaFacebook; ?>" />
 				</label>
 				
@@ -259,11 +256,46 @@ class Timeline_Widget extends WP_Widget {
 				</label>
 			</p>
 			
-			
-			
-			
-        <?php 
-	}
-}
+	<?php
 
+    }
+
+    /**
+	 * Check if the height is correct. If not, it returns a default value
+	 *
+	 * @param integer $height
+	 *
+	 * @return integer $res The correct height
+	 */
+    public static function checkHeight($height) {
+    	$res;
+
+    	if(!is_numeric($height) || $height < 300){
+    		$res = 300;
+    	} else {
+    		$res = intval($height);
+    	}
+
+    	return $res;
+    }
+
+    /**
+	 * Check if the width is correct. If not, it returns a default value
+	 *
+	 * @param integer $width
+	 *
+	 * @return integer $res The correct width
+	 */
+    public static function checkWidth($width) {
+    	$res;
+
+    	if(!is_numeric($width) || $width < 100){
+    		$res = 100;
+    	} else {
+    		$res = intval($width);
+    	}
+
+    	return $res;
+    }
+}
 ?>
