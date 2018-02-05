@@ -18,15 +18,18 @@ class Test_RSS extends WP_UnitTestCase {
  	function test_wp_widget_constructor() {
  
  		$rss_widget = new RSS_Widget();
+ 		$args = NULL;
+		$result = NULL;
  		$instance = [
     			"rss" => "yes",
 		];
 
-		$args = NULL;
-
-		//Comparar que la salida de widget contiene rss
 		$widget = $rss_widget->widget($args, $instance)
-		$this->assertTrue(strpos($widget, 'egc-rss-container'));
+		if (strpos($widget, 'egc-rss-container') !== false) {
+    		$result = true;
+		}
+
+    	$this->assertTrue($result);
  
  	}
 
