@@ -1,6 +1,6 @@
 <?php
 /**
- * Test_Share_Button_Widget
+ * Test_Comment_Box_Widget
  *
  * Test set to test widget performance.
  *
@@ -13,13 +13,6 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 
 		global $wp_widget_factory;
 		$this->assertTrue( isset( $wp_widget_factory->widgets['Comment_Box_Widget'] ) );
-
-	}
-	
-	// Test that Comment_Box_Widget is able to create
-	function test_create_widget() {
-
-		$widget = new Comment_Box_Widget();
 
 	}
 	
