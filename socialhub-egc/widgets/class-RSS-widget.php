@@ -97,7 +97,6 @@ class RSS_Widget extends WP_Widget {
 	    $instance['rss'] = isActivated(strip_tags($new_instance['rss']));
 	    $instance['feedly'] = isActivated(strip_tags($new_instance['feedly']));
 	    $instance['flipboard'] = isActivated(strip_tags($new_instance['flipboard']));
-	    $instance = $new_instance;
     
    		return $instance;
   	}
