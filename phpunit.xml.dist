@@ -1,13 +1,13 @@
 <phpunit bootstrap="tests/bootstrap.php" backupGlobals="false" colors="true">
-    <testsuites>
-        <!-- Default test suite to run all tests -->
-        <testsuite name="Plugin Socialhub-EGC tests">
-	    <file>tests/test-plugin.php</file>
-	    <file>tests/test-follow-button-widget.php</file>
-	    <file>tests/test-share-button-widget.php</file>
-	    <file>tests/test-comment-box-widget.php</file>
-		<file>tests/test-timeline-widget.php</file>
-		<file>tests/test-message-button-widget.php</file>
-        </testsuite>
-    </testsuites>
+	<testsuites>
+		<!-- Default test suite to run all tests -->
+		<testsuite name="Plugin Socialhub-EGC tests">
+			<file>tests/test-plugin.php</file>
+			<file>tests/test-follow-button-widget.php</file>
+			<file>tests/test-share-button-widget.php</file>
+			<file>tests/test-timeline-widget.php</file>
+			<file>tests/test-comment-box-widget.php</file>
+			<file>tests/test-message-button-widget.php</file>
+		</testsuite>
+	</testsuites>
 </phpunit>

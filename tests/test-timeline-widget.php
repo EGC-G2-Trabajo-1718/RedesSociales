@@ -8,33 +8,65 @@
  */
 class Test_Timeline_Widget extends WP_UnitTestCase {
 	
-	//Test that Timeline_Widget is registered in Wordpress as Widget
-	function test_register_widget_core_widget() {
-
+	// Test 1: Check that the widget is correctly registered in WordPress
+	function test_widget_registered() {
 		global $wp_widget_factory;
-		$this->assertTrue( isset( $wp_widget_factory->widgets['Timeline_Widget'] ) );
-
+		$this->assertTrue(isset($wp_widget_factory->widgets['Timeline_Widget']), 'Widget is not registered!');
 	}
 
-	//Test that probe the construct run correctly for this widget
-	function test_wp_widget_constructor() {
-
-		$name = 'Timeline by EGC';
-		$widget = new Timeline_Widget();
-
-		$this->assertEquals( $name, $widget->name );
-
+	// Test 2: Check the height is correct with checkHeight function
+	//		   If you enter a word in the form, the default value is returned (300)
+	function test_check_height_timeline_1() {
+		$res = Timeline_Widget::checkHeight('Test');
+		$this->assertTrue($res == 300, 'Error in checkHeight function: a word is not a number');
 	}
-	
-	//Test that probe the base id for this widget is correct
-	function test_get_baseid_widget() {
 
-		$baseID = 'timeline-egc';
-		$widget = new Timeline_Widget();
-
-		$this->assertEquals( $baseID, $widget->getBaseID() );
-
+	// Test 3: Check the height is correct with checkHeight function
+	//		   If you enter a negative number, the default value (300) is returned
+	function test_check_height_timeline_2() {
+		$res = Timeline_Widget::checkHeight(-300);
+		$this->assertTrue($res == 300, 'Error in checkHeight function: negative number');
 	}
-	
-  
+
+	// Test 4: Check the height is correct with checkHeight function
+	//         If you enter a correct value, this value is returned
+	function test_check_height_timeline_3() {
+		$res = Timeline_Widget::checkHeight(315);
+		$this->assertTrue($res == 315, 'Error in checkHeight function: positive number is not returned');
+	}
+
+	// Test 5: Check the height is correct with checkHeight function
+	//         If you enter an empty string, the default value (300) is returned
+	function test_check_height_timeline_4() {
+		$res = Timeline_Widget::checkHeight('');
+		$this->assertTrue($res == 300, 'Error in checkHeight function: empty string');
+	}
+
+	// Test 6: Check the height is correct with checkWidth function
+	//		   If you enter a word in the form, the default value is returned (100)
+	function test_check_width_timeline_1() {
+		$res = Timeline_Widget::checkWidth('Test');
+		$this->assertTrue($res == 100, 'Error in checkWidth function: a word is not a number');
+	}
+
+	// Test 7: Check the height is correct with checkWidth function
+	//		   If you enter a negative number, the default value (100) is returned
+	function test_check_width_timeline_2() {
+		$res = Timeline_Widget::checkWidth(-100);
+		$this->assertTrue($res == 100, 'Error in checkWidth function: negative number');
+	}
+
+	// Test 8: Check the height is correct with checkWidth function
+	//         If you enter a correct value, this value is returned
+	function test_check_width_timeline_3() {
+		$res = Timeline_Widget::checkWidth(120);
+		$this->assertTrue($res == 120, 'Error in checkWidth function: positive number is not returned');
+	}
+
+	// Test 9: Check the height is correct with checkWidth function
+	//         If you enter an empty string, the default value (100) is returned
+	function test_check_width_timeline_4() {
+		$res = Timeline_Widget::checkWidth(' ');
+		$this->assertTrue($res == 100, 'Error in checkWidth function: empty string');
+	}
 }
