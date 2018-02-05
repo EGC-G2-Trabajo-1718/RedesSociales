@@ -22,6 +22,8 @@ class Test_RSS extends WP_UnitTestCase {
 		$result = NULL;
  		$instance = [
     			"rss" => "yes",
+    			"feedly" => "no",
+    			"flipboard" => "no",
 		];
 
 		$widget = $rss_widget->widget($args, $instance);
