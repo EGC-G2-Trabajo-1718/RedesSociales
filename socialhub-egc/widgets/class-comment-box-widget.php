@@ -157,12 +157,10 @@ class Comment_Box_Widget extends WP_Widget {
 		
 		// Save widget options
 		$instance = $old_instance;
-		$instance['size'] = strip_tags($new_instance['size']);
-		$instance['num'] = strip_tags($new_instance['num']);
-		$instance['style'] = strip_tags($new_instance['style']);
-		$instance['background'] = strip_tags($new_instance['background']);
-		$instance = $new_instance;
-		
+		$instance['size'] = static::checkSize(strip_tags($new_instance['size']));
+		$instance['num'] = static::checkNum(strip_tags($new_instance['num']));
+		$instance['style'] = static::checkStyle(strip_tags($new_instance['style']));
+		$instance['background'] = static::checkBackground(strip_tags($new_instance['background']));
 
 		return $instance;
 	}
