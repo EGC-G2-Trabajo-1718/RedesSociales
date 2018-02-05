@@ -1,0 +1,60 @@
+div.egc-title {
+	background-color: #a81c41;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+}
+div.egc-flex-container {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+	background-color: #f9f9f9;
+	padding: 15px 15px 0;
+}
+div.egc-flex-container div {
+	margin-bottom: 15px;
+}
+a.telegram-share-button,
+a.whatsapp-share-button {
+	display: inline-block;
+	border-radius: 4px;
+	padding: 3px 10px;
+	color: #fff !important;
+	text-decoration: none;
+}
+a.telegram-share-button {
+	background-color: #0088cc;
+}
+a.whatsapp-share-button {
+	background-color: #128c7e;
+}
+a.telegram-share-button:hover {
+	background-color: #0c7abf;
+}
+a.whatsapp-share-button:hover {
+	background-color: #075e54;
+}
+@media only screen and (min-width: 768px) {
+	div.container-whatsapp {
+		display: none;
+	}
+}
+.buttons{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0 auto;
+	margin-top:10px;
+	width: 280px;
+	border-radius: 4px 4px 4px 4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-webkit-border-radius: 4px 4px 4px 4px;
+	border: 0px solid #000000;
+}
+.network{
+	margin-top:15px;
+	text-align: center;
+}
+.network iframe{
+	margin-bottom:0px;
+}
