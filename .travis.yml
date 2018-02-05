@@ -1,0 +1,41 @@
+# Tell Travis CI we're using PHP
+language: php
+
+# PHP version used in first build configuration.
+matrix:
+  include:
+  - php: "5.5"
+  - php: "5.4"
+
+before_install:
+    - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
+
+before_script:
+    - export PLUGIN_SLUG=$(basename $(pwd))
+    - git clone https://github.com/tierra/wordpress.git /tmp/wordpress
+    - cd ..
+    - mv $PLUGIN_SLUG "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
+    - cd /tmp/wordpress
+    - mysql -e "CREATE DATABASE wordpress_tests;" -uroot
+    - cp wp-tests-config-sample.php wp-tests-config.php
+    - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
+    - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
+    - sed -i "s/yourpasswordhere//" wp-tests-config.php
+    - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
+    - cp -r ./socialhub-egc ..
+    - cd ..
+    - cd "$PLUGIN_SLUG"
+
+script: phpunit --colors="always"
+
+before_deploy:
+    - chmod 600 deploy && mv deploy ~/.ssh/id_rsa
+    - curl -O https://raw.githubusercontent.com/EGC-G2-Trabajo-1718/integracion/master/tools/deploy-wordpress-subsistemas.sh
+
+deploy:
+    skip_cleanup: true
+    provider: script
+    script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
+    on:
+     branch: develop
+     php: '5.5'
