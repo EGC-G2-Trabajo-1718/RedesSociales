@@ -64,11 +64,17 @@ class Comment_Box_Widget extends WP_Widget {
 		$style = strip_tags($style);
 		$background = strip_tags($background);
 		
+		// Check the parameters
+		$size = static::checkSize($size);
+		$num = static::checkNum($num);
+		$style = static::checkStyle($style);
+		$background = static::checkBackground($background);
+		
 	?>
 		<!-- This <styele> is not found in the .css to be edited to the consumer's liking -->
 		<style>
 			div.comment-box-background {
-				background-color: <?php if($background!="") echo $background;?>;
+				background-color: <?php echo $background;?>;
 			}
 		</style>
 		
@@ -77,9 +83,9 @@ class Comment_Box_Widget extends WP_Widget {
 			<strong>BOX OF COMMENT</strong>
 			<div id="comment-box-egc">
 			<div class="fb-comments" data-href="<?php the_permalink(); ?>" 
-				data-width="<?php if($size!="" && is_numeric($num)) echo $size; else echo "100%" ?>" 
-				data-numposts="<?php if($num!="" && is_numeric($num) && $num>0) echo $num; else echo "5" ?>"
-				data-colorscheme="<?php if($style=="light" or $style=="dark") echo $style; else echo "light" ?>"
+				data-width="<?php echo $size;?>" 
+				data-numposts="<?php echo $num;?>"
+				data-colorscheme="<?php echo $style;?>"
 				data-order-by="reverse_time"></div>
 			</div>
 			
@@ -93,6 +99,50 @@ class Comment_Box_Widget extends WP_Widget {
 		<!-- Button to hide or show all comments -->
 		<button id="hide-show">Hide/show comments</button>
 	<?php
+	}
+	
+	/**
+	* Checks of parameters
+	*
+	* @return the corresponding attribute checked
+	*/
+	public static function checkSize($size){
+		if( is_numeric($size) && $size > 0 )
+			return $size;
+		else{
+			if( is_numeric(substr($size, 0, -1)) && substr($size, 0, -1) > 0 && substr($size, -1) == "%" )
+				return $size;
+			else
+				return "100%";
+		}
+	}
+	
+	public static function checkNum($num){
+		if( is_numeric($num) && $num > 0 )
+			return $num;
+		else
+			return "5";
+	}
+	
+	public static function checkStyle($style){
+		if( $style=="light" or $style=="dark" )
+			return $style;
+		else
+			return "light";
+	}
+	
+	// If the parameter does not meet the format, an empty string is returned
+	public static function checkBackground($background){
+		if( $background!="" && $background[0] == "#" && strlen($background) == 7 ) {
+			$cadena = "0123456789abcdef";
+			for( $i=1; $i < strlen($background); $i++ ){
+				if( strpos($cadena, $background[$i]) === false ){
+					return ""; // The parameter is wrong, return empty string
+					break;
+				}
+			}	
+			return $background;
+		}
 	}
 
 	/**
