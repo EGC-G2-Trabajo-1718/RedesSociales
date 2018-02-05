@@ -144,8 +144,7 @@ class Timeline_Widget extends WP_Widget {
 		$instance['anchoFacebook'] = static::checkWidth(strip_tags($new_instance['anchoFacebook']));
 		$instance['heightTwitter'] = static::checkHeight(strip_tags($new_instance['heightTwitter']));
 		$instance['widthTwitter'] = static::checkWidth(strip_tags($new_instance['widthTwitter']));
-		$instance['theme'] = strip_tags($new_instance['theme']);		
-		$instance = $new_instance;
+		$instance['theme'] = strip_tags($new_instance['theme']);
 
 		return $instance;
 	}
