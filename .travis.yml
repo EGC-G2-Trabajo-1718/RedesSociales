@@ -26,6 +26,7 @@ before_script:
     - cd ..
     - cd "$PLUGIN_SLUG"
 
+
 script: phpunit --colors="always"
 
 before_deploy:
