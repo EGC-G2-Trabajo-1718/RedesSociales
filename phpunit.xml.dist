@@ -7,6 +7,7 @@
 	    <file>tests/test-share-button-widget.php</file>
 	    <file>tests/test-comment-box-widget.php</file>
 		<file>tests/test-timeline-widget.php</file>
+		<file>tests/test-message-button-widget.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
