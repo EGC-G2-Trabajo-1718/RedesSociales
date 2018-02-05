@@ -41,7 +41,7 @@ class Test_Message_Button_Widget extends WP_UnitTestCase {
 		
 		$widget = new Message_Button_Widget();
 
-		$instance;
+		$instance = array();
 		$message = "This is a test message";
 
 		$this->assertEquals( "This%20is%20a%20test%20message", $widget->getMessageFormateado($instance, $message) );
