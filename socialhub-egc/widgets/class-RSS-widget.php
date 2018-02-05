@@ -92,15 +92,15 @@ class RSS_Widget extends WP_Widget {
 	 * @return bool|array settings to save or false to cancel saving
 	 */
 	public function update($new_instance, $old_instance) {
-		// Save widget options
-		$instance = $old_instance;
-		$instance['rss'] = strip_tags($new_instance['rss']);
-		$instance['feedly'] = strip_tags($new_instance['feedly']);
-		$instance['flipboard'] = strip_tags($new_instance['flipboard']);
-		$instance = $new_instance;
-		
-		return $instance;
-	}
+	    // Save widget options
+	    $instance = $old_instance;
+	    $instance['rss'] = isActivated(strip_tags($new_instance['rss']));
+	    $instance['feedly'] = isActivated(strip_tags($new_instance['feedly']));
+	    $instance['flipboard'] = isActivated(strip_tags($new_instance['flipboard']));
+	    $instance = $new_instance;
+    
+   		return $instance;
+  }
 	
 	/**
 	 * Settings update form
@@ -144,6 +144,20 @@ class RSS_Widget extends WP_Widget {
 
 	public static function getCurrentUrlWithFeed() {
 		return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."feed";
+	}
+
+	public static function isActivated($activation){
+		
+		$result;
+		if ($activation != "yes") {
+			$result = "";
+		}
+
+		else {
+			$result = "yes";
+		}
+
+		return $result;
 	}
 }
 ?>

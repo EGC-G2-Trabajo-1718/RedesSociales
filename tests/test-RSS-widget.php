@@ -14,24 +14,20 @@ class Test_RSS extends WP_UnitTestCase {
 		$this->assertTrue( isset( $wp_widget_factory->widgets['RSS_Widget'] ) );
 	}
 	
-  	//Test that probe the button RSS work correctly.
- 	function test_wp_widget_constructor() {
+  	//Test must return an empty string if the parameter is not "yes".
+ 	function test_is_disable() {
+
+
+ 		$result = RSS_Widget::isActivated("no");
+ 		$this->assertEquals("", $result, "Function does not work properly.")
  
- 		$rss_widget = new RSS_Widget();
- 		$args = NULL;
-		$result = NULL;
- 		$instance = [
-    			"rss" => "yes",
-    			"feedly" => "no",
-    			"flipboard" => "no",
-		];
+ 	}
 
-		$widget = $rss_widget->widget($args, $instance);
-		if (strpos($widget, 'egc-rss-container') !== false) {
-    		$result = true;
-		}
+ 	//Test must return "yes" if the parameter is "yes"
+ 	function test_is_activated() {
 
-    	$this->assertTrue($result);
+ 		$result = RSS_Widget::isActivated("yes");
+ 		$this->assertEquals("yes", $result, "Function does not work properly.")
  
  	}
 
