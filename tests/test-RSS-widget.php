@@ -24,7 +24,7 @@ class Test_RSS extends WP_UnitTestCase {
     			"rss" => "yes",
 		];
 
-		$widget = $rss_widget->widget($args, $instance)
+		$widget = $rss_widget->widget($args, $instance);
 		if (strpos($widget, 'egc-rss-container') !== false) {
     		$result = true;
 		}
