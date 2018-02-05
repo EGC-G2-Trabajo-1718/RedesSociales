@@ -1,8 +1,8 @@
 <?php
 /**
- * <Classname>_Widget
+ * RSS_Widget
  *
- * <Description>.
+ * Allow the creation of buttons for RSS, Feedly and Flipboard.
  *
  * @see WP_Widget
  */
@@ -94,9 +94,9 @@ class RSS_Widget extends WP_Widget {
 	public function update($new_instance, $old_instance) {
 	    // Save widget options
 	    $instance = $old_instance;
-	    $instance['rss'] = isActivated(strip_tags($new_instance['rss']));
-	    $instance['feedly'] = isActivated(strip_tags($new_instance['feedly']));
-	    $instance['flipboard'] = isActivated(strip_tags($new_instance['flipboard']));
+	    $instance['rss'] = static::isActivated(strip_tags($new_instance['rss']));
+	    $instance['feedly'] = static::isActivated(strip_tags($new_instance['feedly']));
+	    $instance['flipboard'] = static::isActivated(strip_tags($new_instance['flipboard']));
     
    		return $instance;
   	}
