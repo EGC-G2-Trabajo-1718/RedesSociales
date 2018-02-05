@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Test_Follow_Button_Widget
+ *
+ * Test set to test widget performance.
+ *
+ * @see WP_UnitTestCase
+ */
 class Test_Follow_Button_Widget extends WP_UnitTestCase {
 	
 	//Test that Follow_Button_Widget is registered in Wordpress as Widget
