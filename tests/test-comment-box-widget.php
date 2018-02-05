@@ -37,21 +37,21 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 	function test_size1(){
 		
 		$size = Comment_Box_Widget::checkSize('test');
-		$this->assertEquals($size, 'test', 'Error: the size is not a number');
+		$this->assertEquals($size, '100%', 'Error: the size is not a number');
 			
 	}
 	
 	function test_size2(){
 		
 		$size = Comment_Box_Widget::checkSize('-1');
-		$this->assertEquals($size, '-1', 'Error: the size is negative');
+		$this->assertEquals($size, '100%', 'Error: the size is negative');
 			
 	}
 	
 	function test_size3(){
 		
 		$size = Comment_Box_Widget::checkSize('-20&');
-		$this->assertEquals($size, '-20&', 'Error: the size is not correct');
+		$this->assertEquals($size, '100%', 'Error: the size is not correct');
 			
 	}
 	
@@ -59,14 +59,14 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 	function test_num1(){
 		
 		$num = Comment_Box_Widget::checkNum('-2');
-		$this->assertEquals($num, '-2', 'Error: the number of comments is negative');
+		$this->assertEquals($num, '5', 'Error: the number of comments is negative');
 			
 	}
 	
 	function test_num2(){
 		
 		$num = Comment_Box_Widget::checkNum('asd');
-		$this->assertEquals($num, 'asd', 'Error: the number of comments is not a number');
+		$this->assertEquals($num, '5', 'Error: the number of comments is not a number');
 			
 	}
 	
@@ -74,7 +74,7 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 	function test_style(){
 		
 		$style = Comment_Box_Widget::checkStyle('red');
-		$this->assertEquals($style, 'red', 'Error: the style is not correct');
+		$this->assertEquals($style, 'light', 'Error: the style is not correct');
 			
 	}
 	
@@ -82,14 +82,14 @@ class Test_Comment_Box_Widget extends WP_UnitTestCase {
 	function test_background1(){
 		
 		$background = Comment_Box_Widget::checkBackground('#12345');
-		$this->assertEquals($background, '#12345', 'Error: the background does not have all the characters');
+		$this->assertEquals($background, '', 'Error: the background does not have all the characters');
 			
 	}
 	
 	function test_background2(){
 		
 		$background = Comment_Box_Widget::checkBackground('fff222');
-		$this->assertEquals($background, 'fff222', 'Error: the background does not have the # characters');
+		$this->assertEquals($background, '', 'Error: the background does not have the # characters');
 			
 	}
 
