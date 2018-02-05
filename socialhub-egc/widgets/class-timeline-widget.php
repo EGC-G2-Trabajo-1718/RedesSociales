@@ -270,10 +270,10 @@ class Timeline_Widget extends WP_Widget {
     public static function checkHeight($height) {
     	$res;
 
-    	if(is_nan($height) || $height < 300){
+    	if(!is_numeric($height) || $height < 300){
     		$res = 300;
     	} else {
-    		$res = $height;
+    		$res = intval($height);
     	}
 
     	return $res;
@@ -289,10 +289,10 @@ class Timeline_Widget extends WP_Widget {
     public static function checkWidth($width) {
     	$res;
 
-    	if(is_nan($width) || $width < 100){
+    	if(!is_numeric($width) || $width < 100){
     		$res = 100;
     	} else {
-    		$res = $width;
+    		$res = intval($width);
     	}
 
     	return $res;
