@@ -38,7 +38,6 @@ deploy:
     script: ssh -o StrictHostKeyChecking=no deploy@egc.duckdns.org 'bash -s' < deploy-wordpress-subsistemas.sh RedesSociales
     on:
      branch: master
-     php: '5.5'
     #provider: releases
     #api_key:
     #secure: "jflQViUjpvG86h8XCd5lSVYmKnJ7/gcpmCGkmT4xjHpkltF5DAvNuLPHSg1hdL0m3jBHZWrzV4dXIEvwLYLb2eUcmhh879T6i46sU/FqRmilb+vB8u/acL3mH56st+6FzKPo+/akctz5gtO/DZrG0X5fq/NptWfhzxKDLtbTI5TVcgmhl0h6bvYRY39cdhZ6Sg6xkD0KO5lc5WDSQbe+FAYHchkkAJT9mRZfPG7AB7EI/pRM73+6b8bqiL5XMTmzhiKOVA3ina+82ploDtD6/NLXMq4fkY3wgh+mkXCGyafGDBQ53w4eYx8PlxwS64X3/S0YVnYaChpfD69lgfCTCDXxXvUfZE9Cv3LfL8Hoinlvzyyrp7kT2VCxez733Q/S2L0xhrg3nYWavPV9FCLKMP1BgcUTXwwtZtwnhFuNo3cY25nZps0bW1t6kX7xNxmuC/xn3kgT2F1tQroOUU/glD1G/9tMhImgBk1Xwphlz/tjNxwxVYCrSfcZKJgTZ1s5R/sWF+bQmhSBEdYItt+lQ1ShYUQOFrpAYBAvsUllNL0Uk3ywXDuo8femkVrveRkLXLM1Ji6slUexTpyTrGBedffkh3WdNgw2Bz8FReFI9kAsLxttMXbWS33OKYMNDHzALh1hH+satFFOBR92AbLe4AfTfi+xPjCCitmLKrz1h8I="
