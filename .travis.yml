@@ -45,6 +45,4 @@ deploy:
      branch: master
      php: '5.5'
      tags: true
-     name: v1.1.1 del plugin SocialHub by EGC
-
-
+     name: Versión v1.1.1 del plugin SocialHub by EGC
