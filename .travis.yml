@@ -1,11 +1,6 @@
-# Tell Travis CI we're using PHP
 language: php
-
-# PHP version used in first build configuration.
-matrix:
-  include:
-  - php: "5.5"
-  - php: "5.4"
+php:
+  - 5.5
 
 before_install:
     - openssl aes-256-cbc -K $encrypted_cb20ac550795_key -iv $encrypted_cb20ac550795_iv -in deploy.enc -out deploy -d
